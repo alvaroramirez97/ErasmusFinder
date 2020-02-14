@@ -1,0 +1,41 @@
+
+.contenido_header{
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "logo navbar";
+    align-items: center;
+}
+
+
+.logo{
+    grid-area: logo;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo img{
+    width: 65%;
+    min-width: 70px;
+    margin: 10px;
+    border: 3px solid white;
+    border-radius: 60%;
+}
+
+
+.barra_menu{
+    width: 100%;
+    grid-area: navbar;
+    height: 68px;
+    font-weight: bold;
+}
+
+
+.justificado{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+

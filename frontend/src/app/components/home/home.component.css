@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+
+.titulo{
+    font-family: 'PT Sans', sans-serif;
+    font-size: 90px;
+    color: black;
+    margin-left: 30%;
+    margin-top: 10%;
+    letter-spacing: 18px;
+    font-weight: bold;
+}
+
+.iconos{
+    margin-left: 57%;
+    margin-top: 3%;
+}
+
+.iconos img{
+    margin-right: 5%;
+}

@@ -1,0 +1,28 @@
+.entrada{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2px;
+    margin-bottom: 15px;
+}
+
+.inputtext{
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.iniciosesion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.iniciosesion button{
+    border: 2px solid black;
+}
+
+.iniciosesion button:hover{
+    background-color: red;
+}

@@ -1,0 +1,17 @@
+<form [formGroup]="formLogin" (submit)="submit()">
+    <div class="entrada">
+        <img src="../../../../assets/img/iconos/envelope.png">
+        <input class="inputtext" type="text" formControlName="email" placeholder=" Email..."><br><br>
+    </div>
+    <div class="entrada">
+        <img src="../../../../assets/img/iconos/locked-padlock.png">
+        <input class="inputtext" type="text" formControlName="password" placeholder=" Contraseña..."><br><br>
+    </div>
+    <br>
+    <div class="entrada">
+        <a href="#">¿Has olvidado tu contraseña?</a>
+    </div>
+    <div class="iniciosesion">
+        <button type="submit">Continuar</button>
+    </div>
+</form>
