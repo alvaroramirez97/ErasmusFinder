@@ -37,6 +37,9 @@ export class MapComponent implements OnInit {
    }
 
 
+
+   // GIIIT
+
   autocompletar() {//AUTOCOMPLETAR CAMPOS DE BUSQUEDA
     console.log('FUNCION-> autocompletar()');
 
