@@ -5,6 +5,7 @@ import { SesionComponent } from './components/sesion/sesion.component';
 import { LoginComponent } from './components/sesion/login/login.component';
 import { RegisterComponent } from './components/sesion/register/register.component';
 import { MapComponent } from './components/map/map.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,9 @@ const routes: Routes = [
 
   {
     path: 'map', component: MapComponent
+  },
+  {
+    path: 'perfil', component: PerfilComponent
   }
 
 
