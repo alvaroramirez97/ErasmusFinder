@@ -1,10 +1,11 @@
-<p>map works!</p>
 
 
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 <div class="busqueda_mapa">
     <p>
         <label for="pais">Pais:</label><br>
-        <input class="input_busqueda " type="text" name="pais" id="pais_buscado"/><br>
+        <input class="input_busqueda " type="text" name="pais" id="pais_buscado" (keyup)="autocompletar(paises,coordBuscada)" /><br>
     </p>
     <p>
         <label for="coordenadas">Coordenadas:</label><br>
@@ -13,8 +14,14 @@
 </div>
 
 <div class="botones_mapa">
-    <a><input id="buscar" class="boton" type="button" value="BUSCAR"></a>
-    <a><input id="ubiActual" class="boton" type="button" value="UBICACION ACTUAL"></a>
+    <a><input id="buscar" class="boton" type="button" value="BUSCAR" (click)="buscar()" ></a>
+    <a><input id="ubiActual" class="boton" type="button" value="UBICACION ACTUAL"  (click)="miUbi()"></a>
+</div>
+
+<br>
+
+<div id="mapamundi">
+
 </div>
 
 <br>

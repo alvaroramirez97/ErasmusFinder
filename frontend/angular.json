@@ -25,15 +25,16 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/bootstrap/prueba.css"
+              "node_modules/jquery-ui-dist/jquery-ui.min.css",
+              "node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [
               "src/assets/jquery/jquery-3.4.1.min.js",
               "src/assets/jquery/jquery-ui.js",
               "src/assets/jquery/jquery.autocomplete.js",
 
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/jquery-ui-dist/jquery-ui.js"
+              
+              "node_modules/leaflet/dist/leaflet.js"
             ]
           },
           "configurations": {

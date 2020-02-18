@@ -15,6 +15,10 @@ import { RegisterComponent } from './components/sesion/register/register.compone
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
+// MAPA LEAFLET
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent]
