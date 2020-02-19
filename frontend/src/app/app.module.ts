@@ -19,7 +19,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // MAPA LEAFLET
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 @NgModule({
