@@ -8,6 +8,7 @@ var morgan_1 = __importDefault(require("morgan"));
 var cors_1 = __importDefault(require("cors"));
 var indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 var usuarioRoutes_1 = __importDefault(require("./routes/usuarioRoutes"));
+var eventosRoutes_1 = __importDefault(require("./routes/eventosRoutes"));
 var Server = /** @class */ (function () {
     function Server() {
         this.app = express_1.default();
@@ -23,6 +24,7 @@ var Server = /** @class */ (function () {
     Server.prototype.enrutado = function () {
         this.app.use('/', indexRoutes_1.default);
         this.app.use('/usuarios', usuarioRoutes_1.default);
+        this.app.use('/eventos', eventosRoutes_1.default);
     };
     Server.prototype.start = function () {
         var _this = this;

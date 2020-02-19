@@ -10,7 +10,7 @@ var IndexController = /** @class */ (function () {
         res.send("Página de Mapa");
     };
     IndexController.prototype.eventos = function (req, res) {
-        res.send("Página de Eventos");
+        res.send("Estas en eventos: /all -> ver todos " + "/id -> para ver uno");
     };
     return IndexController;
 }());

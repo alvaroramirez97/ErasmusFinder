@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import rutasInicio from './routes/indexRoutes';
 import rutasUsuario from './routes/usuarioRoutes';
+import rutasEventos  from './routes/eventosRoutes';
 
 class Server{
 
@@ -23,6 +24,7 @@ class Server{
     enrutado():void{
         this.app.use('/', rutasInicio);
         this.app.use('/usuarios', rutasUsuario);
+        this.app.use('/eventos', rutasEventos);
     }
     start(){
         this.app.listen(this.app.get('port'),()=>console.log('Servidor escuchando en el puerto', this.app.get('port')));
