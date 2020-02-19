@@ -1,3 +1,25 @@
-.divPerfil{
-    
+#divPerfil{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "divFoto divDatos";
+    align-content: center;
+    margin-left: 250px;
+    margin-top: 70px;
+    margin-right: 50px;
+    border: 2px solid white;
+    border-radius: 5%;
+    background-color: lightskyblue;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#divFoto{
+    grid-area: divFoto;
+    align-self: center;
+}
+
+#divDatos{
+    grid-area: divDatos;
+    align-self: center;
 }
