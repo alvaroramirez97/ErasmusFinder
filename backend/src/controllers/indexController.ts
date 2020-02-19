@@ -8,7 +8,7 @@ class IndexController{
         res.send("Página de Mapa");
     }
     eventos(req: Request, res: Response){
-        res.send("Página de Eventos");
+        res.send("Estas en eventos: /all -> ver todos "+"/id -> para ver uno" );
     }
 }
 

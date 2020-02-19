@@ -1,1 +1,13 @@
-<p>events works!</p>
+
+<div>
+    <h1>EVENTOS</h1>
+
+    <div class="listaUsers" *ngFor="let item of lista_eventos">
+        <h2>{{ item.destino }}</h2>
+        <br>
+        <h4>{{ item.descripcion }}</h4>
+        <p>Fecha: {{ item.fecha }}</p>
+        <a href="/events/{{item.id_evento}}">Ver mas</a>
+        
+    </div>
+</div>
