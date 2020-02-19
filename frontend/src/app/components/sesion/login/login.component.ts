@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Mimodelo } from 'src/app/modelos/mimodelo';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { FormBuilder, FormGroup} from '@angular/forms';
-
 
 
 @Component({
@@ -30,8 +29,9 @@ export class LoginComponent implements OnInit {
     this.modelo.getLogin(this.formLogin.value).subscribe(
       res => {
         console.log(res);
-        localStorage.setItem('token', res);
-        this.router.navigate(['/home']);
+        localStorage.setItem('token', res[0]);
+        localStorage.setItem('id', res[1].id);
+        this.router.navigate(['/perfil']);
       },
       err => {
         console.log(err);

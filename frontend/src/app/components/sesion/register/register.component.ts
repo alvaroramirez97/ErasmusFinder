@@ -20,7 +20,8 @@ export class RegisterComponent implements OnInit {
       email: [''],
       username: [''],
       password: [''],
-      id_pais: ['']
+      id_pais: [''],
+      foto: ['']
     });
   }
 
@@ -60,6 +61,10 @@ export class RegisterComponent implements OnInit {
 
   get id_pais() {
     return this.formRegister.get('id_pais');
+  }
+
+  get foto() {
+    return this.formRegister.get('foto');
   }
 
 

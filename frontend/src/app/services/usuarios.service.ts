@@ -21,6 +21,10 @@ export class UsuariosService {
     return this.http.post('http://localhost:3000/usuarios/login', usuario);
   }
 
+  leerUser(id: string): Observable<any> {
+    return this.http.get('http://localhost:3000/usuarios/' + id);
+  }
+
   logIn() {
     return !!localStorage.getItem('token');
   }

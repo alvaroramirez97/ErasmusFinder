@@ -45,15 +45,17 @@ class UsuarioController{
             res.json({'message': 'Error al loguearse'})
         }
         else{
-            res.json(usuarios);
+            //res.json(usuarios);
             const expiresIn = 24*60*60;
             const accessToken = jwt.sign({id: req.body.email},
                                         secret_key,
                                         {expiresIn: expiresIn});
             console.log(accessToken);
-            res.json(accessToken);
+            res.send([accessToken, usuarios[0]]);
         }
     }
+
+
 }
 
 export const controladorUsuario = new UsuarioController();

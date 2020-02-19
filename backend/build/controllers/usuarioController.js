@@ -130,11 +130,10 @@ var UsuarioController = /** @class */ (function () {
                             res.json({ 'message': 'Error al loguearse' });
                         }
                         else {
-                            res.json(usuarios);
                             expiresIn = 24 * 60 * 60;
                             accessToken = jwt.sign({ id: req.body.email }, secret_key, { expiresIn: expiresIn });
                             console.log(accessToken);
-                            res.json(accessToken);
+                            res.send([accessToken, usuarios[0]]);
                         }
                         return [2 /*return*/];
                 }
