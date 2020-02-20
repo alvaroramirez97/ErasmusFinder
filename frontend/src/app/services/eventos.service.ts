@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class EventosService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getEventos(): Observable<any>{
+  getEventos(): Observable<any> {
     return this.http.get('http://localhost:3000/eventos/all');
   }
 
-  verEvento(id: string): Observable<any>{
+  verEvento(id: string): Observable<any> {
     return this.http.get('http://localhost:3000/eventos/' + id);
   }
 

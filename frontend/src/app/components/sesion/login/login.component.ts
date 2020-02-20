@@ -29,9 +29,13 @@ export class LoginComponent implements OnInit {
     this.modelo.getLogin(this.formLogin.value).subscribe(
       res => {
         console.log(res);
-        localStorage.setItem('token', res[0]);
-        localStorage.setItem('id', res[1].id);
-        this.router.navigate(['/perfil']);
+        if (!res[0]) {
+          this.router.navigate(['/home']);
+        } else {
+          localStorage.setItem('token', res[0]);
+          localStorage.setItem('id', res[1].id);
+          this.router.navigate(['/perfil']);
+        }
       },
       err => {
         console.log(err);

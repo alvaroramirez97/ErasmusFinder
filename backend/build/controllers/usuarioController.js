@@ -127,7 +127,7 @@ var UsuarioController = /** @class */ (function () {
                         usuarios = _a.sent();
                         console.log(usuarios);
                         if (usuarios.length == 0) {
-                            res.json({ 'message': 'Error al loguearse' });
+                            res.send([false]);
                         }
                         else {
                             expiresIn = 24 * 60 * 60;
