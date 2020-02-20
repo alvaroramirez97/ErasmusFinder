@@ -25,6 +25,7 @@ export class UsuariosService {
     return this.http.get('http://localhost:3000/usuarios/' + id);
   }
 
+
   logIn() {
     return !!localStorage.getItem('token');
   }

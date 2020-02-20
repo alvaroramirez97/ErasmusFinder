@@ -93,7 +93,7 @@ var UsuarioController = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET ? WHERE id=?', [req.params.id])];
+                    case 0: return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET ? WHERE id=?', [req.body, req.params.id])];
                     case 1:
                         _a.sent();
                         res.json("Usuario Actualizado");
@@ -126,16 +126,19 @@ var UsuarioController = /** @class */ (function () {
                     case 1:
                         usuarios = _a.sent();
                         console.log(usuarios);
-                        if (usuarios.length == 0) {
-                            res.json({ 'message': 'Error al loguearse' });
-                        }
-                        else {
-                            expiresIn = 24 * 60 * 60;
-                            accessToken = jwt.sign({ id: req.body.email }, secret_key, { expiresIn: expiresIn });
-                            console.log(accessToken);
-                            res.send([accessToken, usuarios[0]]);
-                        }
-                        return [2 /*return*/];
+                        if (!(usuarios.length == 0)) return [3 /*break*/, 2];
+                        res.send([false]);
+                        return [3 /*break*/, 4];
+                    case 2:
+                        expiresIn = 24 * 60 * 60;
+                        accessToken = jwt.sign({ id: req.body.email }, secret_key, { expiresIn: expiresIn });
+                        console.log(accessToken);
+                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET accessToken = ? WHERE email=? AND password=?', [accessToken, req.body.email, req.body.password])];
+                    case 3:
+                        _a.sent();
+                        res.send([accessToken, usuarios[0]]);
+                        _a.label = 4;
+                    case 4: return [2 /*return*/];
                 }
             });
         });
@@ -143,3 +146,6 @@ var UsuarioController = /** @class */ (function () {
     return UsuarioController;
 }());
 exports.controladorUsuario = new UsuarioController();
+/*
+COMPROBAR EL TOKEN IGUAL EN BBDD Y EN USUARIO OBTENIDO
+*/ 
