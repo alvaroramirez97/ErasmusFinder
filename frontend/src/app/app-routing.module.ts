@@ -7,6 +7,8 @@ import { RegisterComponent } from './components/sesion/register/register.compone
 import { MapComponent } from './components/map/map.component';
 import { EventsComponent } from './components/events/events.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { EventdetailsComponent } from './components/eventdetails/eventdetails.component';
 
 
 const routes: Routes = [
@@ -54,12 +56,15 @@ const routes: Routes = [
   {
     path: 'perfil', component: PerfilComponent
   },
-  {
-    path: 'perfil', component: PerfilComponent
-  },
 
   {
     path: 'events', component: EventsComponent
+  },
+  {
+    path: 'events/:id', component: EventdetailsComponent
+  },
+  {
+    path: 'contact', component: ContactComponent
   }
 
 

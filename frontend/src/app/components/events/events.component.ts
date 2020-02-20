@@ -9,10 +9,12 @@ import { EventosService } from 'src/app/services/eventos.service';
 export class EventsComponent implements OnInit {
 
   public lista_eventos: any;
+  public id: any;
 
   constructor( public servicioEventos: EventosService) { }
 
   ngOnInit() {
+    this.servicioEventos.setId(this.id);
     this.servicioEventos.getEventos().subscribe(
       res => {
         console.log(res);
@@ -23,6 +25,10 @@ export class EventsComponent implements OnInit {
       }
     );
 
+  }
+  setId(id: any) {
+    localStorage.setItem('id_event', id);
+    console.log(id);
   }
 
 
