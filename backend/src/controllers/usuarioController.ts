@@ -26,7 +26,7 @@ class UsuarioController{
     }
 
     public async update(req:Request, res:Response){
-        await pool.query('UPDATE usuarios SET ? WHERE id=?', [req.params.id]);
+        await pool.query('UPDATE usuarios SET ? WHERE id=?', [req.body, req.params.id]);
         res.json("Usuario Actualizado");
     }
 
@@ -42,7 +42,7 @@ class UsuarioController{
         console.log(usuarios);
         
         if(usuarios.length == 0) {
-            res.json({'message': 'Error al loguearse'})
+            res.send([false]);
         }
         else{
             //res.json(usuarios);
@@ -51,6 +51,8 @@ class UsuarioController{
                                         secret_key,
                                         {expiresIn: expiresIn});
             console.log(accessToken);
+            await pool.query('UPDATE usuarios SET accessToken = ? WHERE email=? AND password=?', [accessToken, req.body.email, req.body.password]);
+        
             res.send([accessToken, usuarios[0]]);
         }
     }
@@ -59,3 +61,10 @@ class UsuarioController{
 }
 
 export const controladorUsuario = new UsuarioController();
+
+
+
+
+/*
+COMPROBAR EL TOKEN IGUAL EN BBDD Y EN USUARIO OBTENIDO
+*/ 
