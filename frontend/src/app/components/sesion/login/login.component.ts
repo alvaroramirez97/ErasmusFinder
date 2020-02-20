@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       res => {
         console.log(res);
         if (!res[0]) {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/login']);
         } else {
           localStorage.setItem('token', res[0]);
           localStorage.setItem('id', res[1].id);

@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'perfil', component: PerfilComponent
   },
   {
+    path: 'perfil', component: PerfilComponent
+  },
+
+  {
     path: 'events', component: EventsComponent
   }
 
