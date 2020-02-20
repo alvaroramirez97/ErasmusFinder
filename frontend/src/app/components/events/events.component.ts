@@ -14,7 +14,7 @@ export class EventsComponent implements OnInit {
   constructor( public servicioEventos: EventosService) { }
 
   ngOnInit() {
-    this.servicioEventos.setId(this.id);
+    // this.servicioEventos.setId(this.id);
     this.servicioEventos.getEventos().subscribe(
       res => {
         console.log(res);
@@ -24,8 +24,8 @@ export class EventsComponent implements OnInit {
         console.log(err);
       }
     );
-
   }
+  
   setId(id: any) {
     localStorage.setItem('id_event', id);
     console.log(id);

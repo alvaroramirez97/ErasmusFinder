@@ -15,6 +15,7 @@ export class EventdetailsComponent implements OnInit {
 
 
   ngOnInit() {
+    // this.id = this.servicioEventos.getId();
     this.id = localStorage.getItem('id_event');
     console.log(this.id);
     this.servicioEventos.verEvento(this.id).subscribe(
