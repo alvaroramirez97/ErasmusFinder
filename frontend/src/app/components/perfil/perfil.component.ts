@@ -25,6 +25,12 @@ export class PerfilComponent implements OnInit {
         this.user = res[0];
         console.log(idUser);
         console.log(res);
+        if (this.user.accessToken === localStorage.getItem('token')) {
+          console.log('token correcto');
+        } else {
+          this.router.navigate(['/login']);
+        }
+
       },
       err => {
         console.log(err);
