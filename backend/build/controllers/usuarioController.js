@@ -117,14 +117,14 @@ var UsuarioController = /** @class */ (function () {
     };
     UsuarioController.prototype.readLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var usuarios, expiresIn, accessToken;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var usuarios, expiresIn, accessToken, _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         console.log(req.body);
                         return [4 /*yield*/, database_1.default.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password])];
                     case 1:
-                        usuarios = _a.sent();
+                        usuarios = _c.sent();
                         console.log(usuarios);
                         if (!(usuarios.length == 0)) return [3 /*break*/, 2];
                         res.send([false]);
@@ -133,11 +133,14 @@ var UsuarioController = /** @class */ (function () {
                         expiresIn = 24 * 60 * 60;
                         accessToken = jwt.sign({ id: req.body.email }, secret_key, { expiresIn: expiresIn });
                         console.log(accessToken);
-                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET accessToken = ? WHERE email=? AND password=?', [accessToken, req.body.email, req.body.password])];
+                        // const fecha: Date = new Date();
+                        _b = (_a = console).log;
+                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET accessToken = ? AND last_update = ? WHERE email=? AND password=?', [accessToken, fecha, req.body.email, req.body.password])];
                     case 3:
-                        _a.sent();
+                        // const fecha: Date = new Date();
+                        _b.apply(_a, [_c.sent()]);
                         res.send([accessToken, usuarios[0]]);
-                        _a.label = 4;
+                        _c.label = 4;
                     case 4: return [2 /*return*/];
                 }
             });

@@ -51,8 +51,11 @@ class UsuarioController{
                                         secret_key,
                                         {expiresIn: expiresIn});
             console.log(accessToken);
-            await pool.query('UPDATE usuarios SET accessToken = ? WHERE email=? AND password=?', [accessToken, req.body.email, req.body.password]);
-        
+            
+                // const fecha: Date = new Date();
+
+            console.log(await pool.query('UPDATE usuarios SET accessToken = ? AND last_update = ? WHERE email=? AND password=?', [accessToken, fecha, req.body.email, req.body.password]) );
+            
             res.send([accessToken, usuarios[0]]);
         }
     }

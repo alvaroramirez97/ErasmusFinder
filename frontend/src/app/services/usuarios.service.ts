@@ -27,11 +27,12 @@ export class UsuariosService {
 
 
   logIn() {
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('id');
   }
 
   logOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
   }
 
   getToken() {
