@@ -19,12 +19,4 @@ export class EventosService {
     return this.http.get('http://localhost:3000/eventos/' + id);
   }
 
-  // setId(id: any) {
-  //   this.id = id;
-  // }
-
-  // getId() {
-  //   return this.id;
-  // }
-
 }
