@@ -38,7 +38,6 @@ class UsuarioController{
     public async readLogin(req:Request, res:Response){
         console.log(req.body);
         const usuarios= await pool.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password]);
-        
         console.log(usuarios);
         
         if(usuarios.length == 0) {
@@ -52,9 +51,8 @@ class UsuarioController{
                                         {expiresIn: expiresIn});
             console.log(accessToken);
             
-                // const fecha: Date = new Date();
-
-            console.log(await pool.query('UPDATE usuarios SET accessToken = ? AND last_update = ? WHERE email=? AND password=?', [accessToken, fecha, req.body.email, req.body.password]) );
+            // const fecha: Date = new Date();
+            console.log(await pool.query('UPDATE usuarios SET accessToken = ? AND WHERE email=? AND password=?', [accessToken, req.body.email, req.body.password]) );
             
             res.send([accessToken, usuarios[0]]);
         }

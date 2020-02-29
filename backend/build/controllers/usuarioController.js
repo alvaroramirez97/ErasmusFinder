@@ -135,7 +135,7 @@ var UsuarioController = /** @class */ (function () {
                         console.log(accessToken);
                         // const fecha: Date = new Date();
                         _b = (_a = console).log;
-                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET accessToken = ? AND last_update = ? WHERE email=? AND password=?', [accessToken, fecha, req.body.email, req.body.password])];
+                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET accessToken = ? AND WHERE email=? AND password=?', [accessToken, req.body.email, req.body.password])];
                     case 3:
                         // const fecha: Date = new Date();
                         _b.apply(_a, [_c.sent()]);

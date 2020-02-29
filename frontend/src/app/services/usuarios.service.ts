@@ -25,6 +25,9 @@ export class UsuariosService {
     return this.http.get('http://localhost:3000/usuarios/' + id);
   }
 
+  getUsuarios(): Observable<any> {
+    return this.http.get('http://localhost:3000/usuarios/');
+  }
 
   logIn() {
     return !!localStorage.getItem('id');
