@@ -12,6 +12,7 @@ import { SesionComponent } from './components/sesion/sesion.component';
 import { LoginComponent } from './components/sesion/login/login.component';
 import { RegisterComponent } from './components/sesion/register/register.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { EventdetailsComponent } from './components/eventdetails/eventdetails.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // MAPA LEAFLET
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     SesionComponent,
     LoginComponent,
     RegisterComponent,
-    PerfilComponent
+    PerfilComponent,
+    ContactComponent,
+    EventdetailsComponent
   ],
   imports: [
     BrowserModule,

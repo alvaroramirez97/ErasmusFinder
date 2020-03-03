@@ -1,13 +1,11 @@
-
 <div>
     <h1>EVENTOS</h1>
-
     <div class="listaUsers" *ngFor="let item of lista_eventos">
+        <h2 [id] = "item.id">{{item.id}}</h2>
         <h2>{{ item.destino }}</h2>
         <br>
         <h4>{{ item.descripcion }}</h4>
         <p>Fecha: {{ item.fecha }}</p>
-        <a href="/events/{{item.id_evento}}">Ver mas</a>
-        
+        <a href="/events/{{item.id_evento}}" (click)="setId(item.id_evento)">Ver mas</a>
     </div>
 </div>

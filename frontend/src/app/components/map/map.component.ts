@@ -117,17 +117,6 @@ export class MapComponent implements OnInit {
           marcas.addLayer(mar);
         });
 
-
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
-
-  }
-
-
   cargarUbi(datos: any) {     // CARGAR MI UBICACION
     console.log('cargando Ubi');
     datos.pointer.clearLayers();
@@ -172,10 +161,5 @@ export class MapComponent implements OnInit {
     console.log(ubi);
     this.mapa.flyTo([this.coordBuscada.lati, this.coordBuscada.longi], 7);
   }
-
-
-
-
-
 
 }

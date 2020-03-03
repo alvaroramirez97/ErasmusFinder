@@ -1,0 +1,48 @@
+.contacto{
+    width: 50%;
+    height: 70%;
+    max-height: 490px;
+    margin-left: 25%;
+    margin-top: 1%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: "postal"
+                        "telefono"
+                        "email";
+}
+
+.postal{
+    grid-area: postal;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "icono datos";
+}
+
+.icono{
+    grid-area: icono;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.datos{
+    grid-area: datos;
+}
+
+.telefono{
+    grid-area: telefono;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "icono datos";
+}
+
+.email{
+    grid-area: email;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "icono datos";
+}
