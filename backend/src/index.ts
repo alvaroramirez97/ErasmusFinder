@@ -28,6 +28,7 @@ class Server{
     }
     start(){
         this.app.listen(this.app.get('port'),()=>console.log('Servidor escuchando en el puerto', this.app.get('port')));
+        
     }
 }
 

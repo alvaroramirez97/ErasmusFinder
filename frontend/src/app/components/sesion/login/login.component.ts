@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   public formLogin: FormGroup;
   public users: Mimodelo;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private modelo: UsuariosService) { 
+  constructor(private router: Router, private formBuilder: FormBuilder, private modelo: UsuariosService) {
     this.formLogin = formBuilder.group({
       email: [''],
       password: ['']
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     this.modelo.getLogin(this.formLogin.value).subscribe(
       res => {
         console.log(res);
+
         if (!res[0]) {
           this.router.navigate(['/login']);
         } else {
