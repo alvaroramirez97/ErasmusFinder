@@ -22,6 +22,10 @@ export class PerfilComponent implements OnInit {
     const idUser = localStorage.getItem('id');
     this.serviceuser.leerUser(idUser).subscribe(
       res => {
+        if (!res[0]) {
+          this.router.navigate(['/login']);
+        }
+
         this.user = res[0];
         console.log(idUser);
         console.log(res);
@@ -33,6 +37,7 @@ export class PerfilComponent implements OnInit {
 
       },
       err => {
+        this.router.navigate(['/login']);
         console.log(err);
       }
     );
