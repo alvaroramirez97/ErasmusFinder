@@ -75,6 +75,8 @@ export class MapComponent implements OnInit {
          event.preventDefault();
          $('#pais_buscado').val(ui.item.label);
          $('#ubi_buscada').val(ui.item.coord);
+         coor.lati = ui.item.coord[0];
+         coor.longi = ui.item.coord[1];
      },
      select(event, ui) {
          event.preventDefault();
@@ -165,6 +167,9 @@ export class MapComponent implements OnInit {
   }
 
   buscar() {
+    const ubi = $('#ubi_buscada').val();
+    const lati = ubi;
+    console.log(ubi);
     this.mapa.flyTo([this.coordBuscada.lati, this.coordBuscada.longi], 7);
   }
 
