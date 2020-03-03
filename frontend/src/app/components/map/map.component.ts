@@ -97,7 +97,6 @@ export class MapComponent implements OnInit {
   }
 
 
-  
   cargarUbi(datos:any){
     console.log('cargando Ubi')
     datos.pointer.clearLayers();
@@ -138,10 +137,5 @@ export class MapComponent implements OnInit {
   buscar() {
     this.mapa.flyTo([this.coordBuscada.lati, this.coordBuscada.longi], 7);
   }
-
-
-
-
-
 
 }

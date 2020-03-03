@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MimodeloRegistro } from 'src/app/modelos/mimodeloRegistro';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
   public formRegister: FormGroup;
   public misusuarios: MimodeloRegistro;
 
-  constructor(private formBuilder: FormBuilder, private mimodelo: UsuariosService) {
+  constructor(private formBuilder: FormBuilder, private mimodelo: UsuariosService, private router: Router) {
     this.formRegister = formBuilder.group({
       nombre: [''],
       apellidos: [''],
@@ -32,9 +33,11 @@ export class RegisterComponent implements OnInit {
     this.mimodelo.crearUsuario(this.formRegister.value).subscribe(
       res => {
         console.log(res);
+        this.router.navigate(['/login']);
       },
       err => {
         console.log(err);
+        this.router.navigate(['/register']);
       }
     );
   }

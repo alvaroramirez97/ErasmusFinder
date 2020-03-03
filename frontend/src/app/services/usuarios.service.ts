@@ -32,6 +32,7 @@ export class UsuariosService {
 
   logOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
   }
 
   getToken() {
