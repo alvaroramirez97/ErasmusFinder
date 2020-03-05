@@ -21,16 +21,22 @@
 }
 
 
+
+/* RESPONSIVE */ 
 @media only screen and (max-width:991px){
+   
     .contenido_general{
-        margin: 0px 5px;
+        margin: 2%;
         height: 100vh;
-        width: 95%;
+        width: 96%;
         display: grid;
         grid-template-rows: 1fr 6fr;
         grid-template-columns: 12fr;
         grid-template-areas: "header"
                             "main";
+    
     }
+    
+
 }
 
