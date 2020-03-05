@@ -116,6 +116,11 @@ export class MapComponent implements OnInit {
         }).bindPopup('<h5>' + usu.nombre + ' ' + usu.apellidos + '</h5><br><a href="#">Ver perfil</a>');
           marcas.addLayer(mar);
         });
+      },
+      err => {
+        console.log(err);
+      });
+    }
 
   cargarUbi(datos: any) {     // CARGAR MI UBICACION
     console.log('cargando Ubi');

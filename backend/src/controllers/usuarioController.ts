@@ -52,7 +52,7 @@ class UsuarioController{
             console.log(accessToken);
             
             // const fecha: Date = new Date();
-            console.log(await pool.query('UPDATE usuarios SET accessToken = ? AND WHERE email=? AND password=?', [accessToken, req.body.email, req.body.password]) );
+            console.log(await pool.query('UPDATE usuarios SET accessToken = ? WHERE email=? AND password=?', [accessToken, req.body.email, req.body.password]) );
             
             res.send([accessToken, usuarios[0]]);
         }

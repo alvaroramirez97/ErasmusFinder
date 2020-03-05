@@ -1,20 +1,84 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
 
+
+.cont_home{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 14fr 2fr;
+    grid-template-areas: "titulo"
+                        "iconos";
+    margin-top: 10%;
+    height: 100vh;
+    
+}
+
 .titulo{
     font-family: 'PT Sans', sans-serif;
-    font-size: 90px;
     color: black;
-    margin-left: 30%;
-    margin-top: 10%;
     letter-spacing: 18px;
     font-weight: bold;
+    margin-left: 30%;
+    margin-top: 6%;
+    grid-area: titulo;
+}
+
+.titulo h1{
+    font-size: 500%;
 }
 
 .iconos{
     margin-left: 57%;
     margin-top: 3%;
+
+    grid-area: iconos;
 }
 
 .iconos img{
     margin-right: 5%;
+}
+
+@media only screen and (max-width:991px){
+
+    .cont_home{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 14fr 2fr;
+        grid-template-areas: "titulo"
+                            "iconos";
+                            
+        margin-top: 10%;
+        height: 70vh;
+        
+    }
+
+    .titulo{
+        font-family: 'PT Sans', sans-serif;
+        color: black;
+        letter-spacing: 18px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2%;
+        margin-top: 25%;
+        min-height: 250px;
+    }
+    
+
+    .titulo h1{
+        font-size: 450%;
+    }
+    
+    .iconos{
+        margin: 10%;
+        padding: 5%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        
+    }
+    
+    .iconos img{
+        margin-right: 5%;
+    }
 }
