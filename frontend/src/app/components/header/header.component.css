@@ -25,8 +25,7 @@
 
 .barra_menu{
     width: 100%;
-    grid-area: navbar;
-    height: 68px;
+    grid-area: navbar;  
     font-weight: bold;
 }
 
@@ -38,7 +37,32 @@
     align-items: center;
 }
 
+
+/* RESPONSIVE */ 
 @media only screen and (max-width:991px){
+   
+
+    .contenido_header{
+        display: grid;
+        max-height: 170px;
+        grid-template-columns: 10fr;
+        grid-template-areas: "logo" "navbar";
+        grid-template-rows: auto;
+        align-items: center;
+    }
+
+    .logo{
+        margin: auto;
+        max-height: 100px;
+        width: 10%;
+    }
+
+    .barra_menu{
+        width: 100%;
+        grid-area: navbar;
+        font-weight: bold;
+    }
     
+
 }
 

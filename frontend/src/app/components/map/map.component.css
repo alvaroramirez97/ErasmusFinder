@@ -1,17 +1,20 @@
+
+.contenido_mapa{
+    width: 100%;
+}
+
 .busqueda_mapa{
-    display: flex;
     justify-content: space-around;
 }
 
 .busqueda_mapa p{
-    width: 45%;
+    width: 70%;
+    margin: auto;
 }
 
 .busqueda_mapa input{
     width: 100%;
     border-radius: 5px;
-    background-color: black ;
-    color: white;
 }
 
 .botones_mapa{

@@ -8,8 +8,12 @@ body{
     background-attachment: fixed;
 }
 
+
+/* RESPONSIVE */ 
 @media only screen and (max-width:991px){
+   
     body{
         background-image: url(../src/assets/img/wall_movil.png);
     }
+
 }

@@ -73,14 +73,16 @@ export class MapComponent implements OnInit {
       },
       focus(event, ui) {
          event.preventDefault();
+         $('#lati_buscada').val(ui.item.coord[0]);
+         $('#long_buscada').val(ui.item.coord[1]);
          $('#pais_buscado').val(ui.item.label);
-         $('#ubi_buscada').val(ui.item.coord);
          coor.lati = ui.item.coord[0];
          coor.longi = ui.item.coord[1];
      },
      select(event, ui) {
          event.preventDefault();
-         $('#ubi_buscada').val(ui.item.coord);
+         $('#lati_buscada').val(ui.item.coord[0]);
+         $('#long_buscada').val(ui.item.coord[1]);
          $('#pais_buscado').val(ui.item.label);
          coor.lati = ui.item.coord[0];
          coor.longi = ui.item.coord[1];
@@ -161,10 +163,10 @@ export class MapComponent implements OnInit {
   }
 
   buscar() {
-    const ubi = $('#ubi_buscada').val();
-    const lati = ubi;
-    console.log(ubi);
-    this.mapa.flyTo([this.coordBuscada.lati, this.coordBuscada.longi], 7);
+    const lon = $('#long_buscada').val();
+    const lati = $('#lati_buscada').val();
+
+    this.mapa.flyTo([lati, lon], 7);
   }
 
 }
