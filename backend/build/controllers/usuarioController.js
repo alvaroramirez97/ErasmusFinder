@@ -115,6 +115,28 @@ var UsuarioController = /** @class */ (function () {
             });
         });
     };
+    UsuarioController.prototype.check = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, database_1.default.query('SELECT email FROM usuarios WHERE email=?', [req.params.email])];
+                    case 1:
+                        user = _a.sent();
+                        if (!user[0]) {
+                            console.log('USUARIO NO EXISTE');
+                            res.send([false]);
+                        }
+                        else {
+                            console.log('USUARIO SI EXISTE');
+                            res.send([true]);
+                        }
+                        console.log(user[0]);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     UsuarioController.prototype.readLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var usuarios, expiresIn, accessToken, _a, _b;

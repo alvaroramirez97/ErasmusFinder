@@ -4,6 +4,9 @@ import { MimodeloRegistro } from 'src/app/modelos/mimodeloRegistro';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Router } from '@angular/router';
 
+
+declare var $: any;
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -41,6 +44,37 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
+
+  autocompletar(lista: Array<any>, coor: any) { // AUTOCOMPLETAR CAMPO DE IDIOMAS
+    console.log('FUNCION-> autocompletar()');
+
+    $('#pais_buscado').autocomplete({
+      source: lista,
+      minLength: 2,
+      classes: {
+        'ui-autocomplete': 'lista_autocomplete',
+        'ui-menu-item': 'elemento_autocomplete'
+      },
+      focus(event, ui) {
+         event.preventDefault();
+         $('#lati_buscada').val(ui.item.coord[0]);
+         $('#long_buscada').val(ui.item.coord[1]);
+         $('#pais_buscado').val(ui.item.label);
+         coor.lati = ui.item.coord[0];
+         coor.longi = ui.item.coord[1];
+     },
+     select(event, ui) {
+         event.preventDefault();
+         $('#lati_buscada').val(ui.item.coord[0]);
+         $('#long_buscada').val(ui.item.coord[1]);
+         $('#pais_buscado').val(ui.item.label);
+         coor.lati = ui.item.coord[0];
+         coor.longi = ui.item.coord[1];
+      }
+    });
+  }
+
+
 
   get nombre() {
     return this.formRegister.get('nombre');

@@ -59,6 +59,20 @@ var MapaController = /** @class */ (function () {
             });
         });
     };
+    MapaController.prototype.cargarIdiomas = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var idiomas;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, database_1.default.query('SELECT * FROM datosidiomas GROUP BY datosidiomas.id_idioma', [req.body])];
+                    case 1:
+                        idiomas = _a.sent();
+                        res.json(idiomas);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     return MapaController;
 }());
 exports.controladorMapa = new MapaController();
