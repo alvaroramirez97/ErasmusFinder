@@ -40,10 +40,31 @@ export class LoginComponent implements OnInit {
       this.user = user;
       console.log(this.user);
       this.loggedIn = (user != null);
-      
-      
-      localStorage.setItem('token', user.idToken);
-      this.router.navigate(['/perfil']);
+
+      ////////////////////////////////////////
+      this.modelo.existeEmail(this.user.email).subscribe(
+        res => {
+          console.log(res);
+          console.log(res[0]);
+          console.log(res[1]);
+
+
+          if (res[0] === false) {
+            this.router.navigate(['/login']);
+            console.log('NECESARIO REGISTRO');
+          } else {
+            localStorage.setItem('token', user.idToken);
+            localStorage.setItem('id', res[1]);
+            this.router.navigate(['/perfil']);
+          }
+        },
+        err => {
+          console.log(err);
+        }
+      );
+      ////////////////////////////////////////
+
+
     });
   }
 
