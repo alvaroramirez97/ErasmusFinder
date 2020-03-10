@@ -1,7 +1,10 @@
 <form method="POST" [formGroup]="formRegister" (submit)="submit()">
     <div class="entrada">
         <img src="../../../../assets/img/iconos/man-user.png">
-        <input class="inputtext" type="text" formControlName="nombre" placeholder=" Nombre...">
+        <input class="inputtext" type="text" formControlName="nombre" placeholder=" Nombre..."><br>
+    </div>
+    <div class="entrada">
+        <img src="../../../../assets/img/iconos/man-user.png">
         <input class="inputtext" type="text" formControlName="apellidos" placeholder=" Apellidos..."><br><br>
     </div>
     <div class="entrada">
@@ -22,7 +25,8 @@
     </div>
     <div class="entrada">
         <img src="../../../../assets/img/iconos/photo-camera.png">
-        <input class="inputtext max-w" type="file" formControlName="foto"><br>
+        <input class="inputtext inputfile max-w" id="selectedFile" type="file" formControlName="foto"><br>
+        <input type="button" class="inputtext" value="Examinar..." onclick="document.getElementById('selectedFile').click();">
     </div>
     <br>
     <div class="iniciosesion">

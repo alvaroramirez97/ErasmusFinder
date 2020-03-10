@@ -18,6 +18,7 @@
 .botones{
     max-height: 100px;
     grid-area: botones;
+    min-height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,8 +68,6 @@
 @media only screen and (max-width:991px){
     .registro{
         width: 100%;
-        height: 85%;
-        max-height: 490px;
         max-width: 400px;
         margin: 10px auto;
         padding: 15px;
