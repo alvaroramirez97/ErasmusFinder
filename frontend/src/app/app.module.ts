@@ -22,6 +22,25 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
+// Login con redes sociales
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider , FacebookLoginProvider } from 'angularx-social-login';
+
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('493432873509-a17e4cerbf7qr145png214n8oo4tnq49.apps.googleusercontent.com')
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('Facebook-App-Id')
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 
 @NgModule({
@@ -44,9 +63,15 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    LeafletModule
+    LeafletModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
