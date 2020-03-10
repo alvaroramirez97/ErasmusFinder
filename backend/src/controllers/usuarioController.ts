@@ -46,6 +46,7 @@ class UsuarioController{
         }
         console.log(user[0]);
     }
+    
 
     public async readLogin(req:Request, res:Response){
         console.log(req.body);
