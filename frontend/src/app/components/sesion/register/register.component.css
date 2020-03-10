@@ -3,13 +3,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2px;
-    margin-bottom: 15px;
+    margin: 5px 0px;
 }
 
 .inputtext{
     border: 2px solid black;
     margin: 5px;
+    width: 42%;
 }
 
 .iniciosesion{
@@ -20,9 +20,25 @@
 }
 
 .iniciosesion button{
+    border-radius: 10px;
     border: 2px solid black;
+    width: 45%;
 }
 
 .iniciosesion button:hover{
-    background-color: red;
+    background-color: yellow;
+}
+
+
+@media only screen and (max-width:991px){
+
+    .inputtext{
+        min-height: 25px;
+        font-size: 12px;
+    }
+
+    .max-w{
+        min-width: 130px;
+    }
+
 }

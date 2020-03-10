@@ -10,9 +10,8 @@ var IndexRoutes = /** @class */ (function () {
     }
     IndexRoutes.prototype.config = function () {
         this.router.get('/', indexController_1.controladorInicio.inicio);
-        this.router.get('/mapa', indexController_1.controladorInicio.mapa);
-        this.router.get('/eventos', indexController_1.controladorInicio.eventos);
         this.router.get('/verpaises', mapaController_1.controladorMapa.verPaises);
+        this.router.get('/veridiomas', mapaController_1.controladorMapa.cargarIdiomas);
     };
     return IndexRoutes;
 }());

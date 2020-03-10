@@ -11,10 +11,9 @@ class IndexRoutes{
     }
     config():void{
         this.router.get('/', controladorInicio.inicio);
-        this.router.get('/mapa', controladorInicio.mapa);
-        this.router.get('/eventos', controladorInicio.eventos);
         
         this.router.get('/verpaises', controladorMapa.verPaises);
+        this.router.get('/veridiomas', controladorMapa.cargarIdiomas);
 
     }
 

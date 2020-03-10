@@ -34,6 +34,18 @@ class UsuarioController{
         await pool.query('DELETE FROM usuarios WHERE id=?', [req.params.id]);
         res.json("Usuario Borrado");
     }
+    
+    public async check(req:Request, res:Response){
+        const user = await pool.query('SELECT email FROM usuarios WHERE email=?', [req.params.email]);
+        if(!user[0]){
+            console.log('USUARIO NO EXISTE')
+            res.send([false]);
+        }else{
+            console.log('USUARIO SI EXISTE');
+            res.send([true]);
+        }
+        console.log(user[0]);
+    }
 
     public async readLogin(req:Request, res:Response){
         console.log(req.body);
