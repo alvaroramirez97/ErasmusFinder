@@ -70,6 +70,8 @@ const routes: Routes = [
 
 ];
 
+export const RUTAS_APP = RouterModule.forRoot(routes, {useHash: true});
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -4,6 +4,10 @@ import { Mimodelo } from 'src/app/modelos/mimodelo';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { FormBuilder, FormGroup} from '@angular/forms';
 
+// Login redes sociales
+import { AuthService } from 'angularx-social-login';
+import { GoogleLoginProvider , FacebookLoginProvider } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +19,11 @@ export class LoginComponent implements OnInit {
   public formLogin: FormGroup;
   public users: Mimodelo;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private modelo: UsuariosService) {
+  // Login socials
+  private user: SocialUser;
+  private loggedIn: boolean;
+
+  constructor(private router: Router, private formBuilder: FormBuilder, private modelo: UsuariosService, private authService: AuthService) {
     this.formLogin = formBuilder.group({
       email: [''],
       password: ['']
@@ -23,6 +31,28 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+  }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      console.log(this.user);
+      this.loggedIn = (user != null);
+      
+      
+      localStorage.setItem('token', user.idToken);
+      this.router.navigate(['/perfil']);
+    });
+  }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.authService.signOut();
   }
 
   submit() {
