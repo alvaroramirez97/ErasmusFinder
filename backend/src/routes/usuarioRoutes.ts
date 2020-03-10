@@ -9,12 +9,13 @@ class UsuarioRoutes{
         this.config();
     }
     config():void{
-        this.router.post('/crear', controladorUsuario.create);
         this.router.get('/', controladorUsuario.read);
+        this.router.get('/:id', controladorUsuario.readone);
+        this.router.post('/crear', controladorUsuario.create);
         this.router.put('/:id', controladorUsuario.update);
         this.router.delete('/:id', controladorUsuario.delete);
-        this.router.get('/:id', controladorUsuario.readone);
         this.router.post('/login', controladorUsuario.readLogin);
+        this.router.get('/exist/:email', controladorUsuario.check);
     }
 
 }

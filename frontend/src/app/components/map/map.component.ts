@@ -32,7 +32,6 @@ export class MapComponent implements OnInit {
     this.cargarMarcadores(this.marcadores);
     this.servicioPaises.verPaises().subscribe(
       res => {
-        console.log('BUSQUEDA BBDD', res);
         res.forEach(pais => {
           const objeto = {
             label : pais.nombre,
@@ -132,8 +131,8 @@ export class MapComponent implements OnInit {
 
             var marcador = L.marker([e.latitude, e.longitude], {
                 icon: L.icon({
-                    iconUrl: './assets/img/iconos/mapa/user-pointer.png',
-                    iconSize: [20, 20],
+                    iconUrl: './assets/img/iconos/mapa/you.png',
+                    iconSize: [23, 23],
                 }),
             }).bindPopup('<h5>Tu ubicacion</h5>');
             datos.latitud = e.latitude;
@@ -156,13 +155,13 @@ export class MapComponent implements OnInit {
 
   }
 
-  miUbi() {
+  miUbi() { // BOTON MI UBICACION
     this.updateDatos(this.datosuser);
     console.log('MI UBI', this.datosuser.latitud, this.datosuser.longitud);
     this.mapa.flyTo([this.datosuser.latitud, this.datosuser.longitud], 15);
   }
 
-  buscar() {
+  buscar() {  // BOTON BUSCAR
     const lon = $('#long_buscada').val();
     const lati = $('#lati_buscada').val();
 
