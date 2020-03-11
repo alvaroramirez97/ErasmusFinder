@@ -3,7 +3,6 @@ export interface MimodeloRegistro {
     nombre?: string;
     apellidos?: string;
     email?: string;
-    username?: string;
     password?: string;
     id_pais?: number;
 }
