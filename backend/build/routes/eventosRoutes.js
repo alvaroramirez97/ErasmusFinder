@@ -11,6 +11,7 @@ var EventosRoutes = /** @class */ (function () {
         this.router.get('/all', eventsController_1.controladorEventos.readEventos);
         this.router.get('/:id', eventsController_1.controladorEventos.readOne);
         this.router.get('/delete/:id', eventsController_1.controladorEventos.delete);
+        this.router.get('/all/:destino', eventsController_1.controladorEventos.readEventosFiltrado);
     };
     return EventosRoutes;
 }());

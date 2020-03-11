@@ -12,6 +12,7 @@ class EventosRoutes{
         this.router.get('/all', controladorEventos.readEventos);
         this.router.get('/:id', controladorEventos.readOne);
         this.router.get('/delete/:id', controladorEventos.delete);
+        this.router.get('/all/:destino', controladorEventos.readEventosFiltrado);
     }
 
 }
