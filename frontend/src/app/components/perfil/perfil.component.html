@@ -1,13 +1,26 @@
-<div id="divPerfil">
-    <div id="divFoto">
-        <img class="img" width="200" height="200" src="../../../assets/img/logo.png">
-    </div>
+
+<div class="contenedor_perfil">
     <div id="divDatos">
-        <h3>{{user.username}}</h3><br>
-        <h3>Nombre: {{user.nombre}}</h3><br>
-        <h3>Apellidos: {{user.apellidos}}</h3><br>
-        <h3>Email: {{user.email}}</h3><br>
+        <div class="foto">
+            <img *ngIf="this.user.foto.length>2 else default" class="img" src="../../../assets/img/users-img/{{user.foto}}">
+          <ng-template #default>
+            <img class="img" src="../../../assets/img/default-user.png">
+          </ng-template>
+        </div>
+
+        <div class="datos" *ngIf="user">
+            
+            <h2><b>Nombre:</b>  {{user.nombre}}</h2>
+            <h2><b>Apellidos:</b>  {{user.apellidos}}</h2><br>
+            <h2><b>Email:</b> {{user.email}}</h2><br>
+        </div>
     </div>
+
+    <div id="idiomas">
+        <h2>Idiomas</h2>
+    </div>
+
+    <br><br>
     <div id="editarPerfil">
         <a href="#"><h4>Editar perfil</h4></a>
     </div>
