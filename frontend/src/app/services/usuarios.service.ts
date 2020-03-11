@@ -13,7 +13,6 @@ export class UsuariosService {
   constructor(private http: HttpClient) { }
 
   crearUsuario(usuario: MimodeloRegistro): Observable<any> {
-    console.log(usuario);
     return this.http.post('http://localhost:3000/usuarios/crear', usuario);
   }
 

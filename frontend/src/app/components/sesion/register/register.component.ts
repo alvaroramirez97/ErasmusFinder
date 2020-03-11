@@ -34,8 +34,16 @@ export class RegisterComponent implements OnInit {
   submit() {
     this.mimodelo.crearUsuario(this.formRegister.value).subscribe(
       res => {
-        console.log(res);
-        this.router.navigate(['/login']);
+        if (!res[0]) {
+
+          this.router.navigate(['/register']);
+        } else{
+          console.log(res);
+
+          localStorage.setItem('token', res[1]);
+          localStorage.setItem('id', res[0]);
+          this.router.navigate(['/perfil']);
+        }
       },
       err => {
         console.log(err);
@@ -55,20 +63,20 @@ export class RegisterComponent implements OnInit {
         'ui-menu-item': 'elemento_autocomplete'
       },
       focus(event, ui) {
-         event.preventDefault();
-         $('#lati_buscada').val(ui.item.coord[0]);
-         $('#long_buscada').val(ui.item.coord[1]);
-         $('#pais_buscado').val(ui.item.label);
-         coor.lati = ui.item.coord[0];
-         coor.longi = ui.item.coord[1];
-     },
-     select(event, ui) {
-         event.preventDefault();
-         $('#lati_buscada').val(ui.item.coord[0]);
-         $('#long_buscada').val(ui.item.coord[1]);
-         $('#pais_buscado').val(ui.item.label);
-         coor.lati = ui.item.coord[0];
-         coor.longi = ui.item.coord[1];
+        event.preventDefault();
+        $('#lati_buscada').val(ui.item.coord[0]);
+        $('#long_buscada').val(ui.item.coord[1]);
+        $('#pais_buscado').val(ui.item.label);
+        coor.lati = ui.item.coord[0];
+        coor.longi = ui.item.coord[1];
+      },
+      select(event, ui) {
+        event.preventDefault();
+        $('#lati_buscada').val(ui.item.coord[0]);
+        $('#long_buscada').val(ui.item.coord[1]);
+        $('#pais_buscado').val(ui.item.label);
+        coor.lati = ui.item.coord[0];
+        coor.longi = ui.item.coord[1];
       }
     });
   }

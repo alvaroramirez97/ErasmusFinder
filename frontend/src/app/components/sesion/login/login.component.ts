@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    
   }
 
   signInWithGoogle(): void {
@@ -40,8 +39,7 @@ export class LoginComponent implements OnInit {
       this.user = user;
       console.log(this.user);
       this.loggedIn = (user != null);
-      
-      
+
       localStorage.setItem('token', user.idToken);
       this.router.navigate(['/perfil']);
     });
