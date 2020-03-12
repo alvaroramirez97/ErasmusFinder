@@ -76,6 +76,25 @@ var UsuarioController = /** @class */ (function () {
             });
         });
     };
+    UsuarioController.prototype.updateToken = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var token;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET accessToken = ? WHERE email=?', [req.body.accessToken, req.body.email])];
+                    case 1:
+                        token = _a.sent();
+                        if (token.affectedRows == 0) {
+                            res.send(false);
+                        }
+                        else {
+                            res.send(true);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     UsuarioController.prototype.read = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var usuarios;
