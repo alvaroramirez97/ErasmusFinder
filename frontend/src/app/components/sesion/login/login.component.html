@@ -7,10 +7,12 @@
         <img src="../../../../assets/img/iconos/locked-padlock.png">
         <input class="inputtext" type="text" value="1234" formControlName="password" placeholder=" Contraseña..."><br><br>
     </div>
-    <br>
     <div class="entrada">
         <a href="#">¿Has olvidado tu contraseña?</a><br>
         
+    </div>
+    <div class="iniciosesion">
+        <button type="submit" class="btn btn-info btn-block">Iniciar Sesion</button>
     </div>
     <div class="entrada">
         <button class="btn btn-danger btn-block" (click)="signInWithGoogle()">
@@ -25,7 +27,4 @@
         </button>
     </div>
     
-    <div class="iniciosesion">
-        <button type="submit">Continuar</button>
-    </div>
 </form>

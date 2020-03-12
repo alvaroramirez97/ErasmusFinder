@@ -8,7 +8,7 @@
 }
 
 .busqueda_mapa p{
-    width: 70%;
+    width: 75%;
     margin: auto;
 }
 
@@ -26,9 +26,20 @@
 
 
 
+
 #mapamundi{
     height: 500px;
     border-radius: 15px;
     z-index: 0;
+}
+
+
+
+@media only screen and (max-width:991px){
+    
+    .boton{
+        margin: 2px;
+        font-size: 85%;
+    }
 }
 
