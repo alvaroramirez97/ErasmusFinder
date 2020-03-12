@@ -120,7 +120,7 @@ var UsuarioController = /** @class */ (function () {
             var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query('SELECT email FROM usuarios WHERE email=?', [req.params.email])];
+                    case 0: return [4 /*yield*/, database_1.default.query('SELECT id, email FROM usuarios WHERE email=?', [req.params.email])];
                     case 1:
                         user = _a.sent();
                         if (!user[0]) {
@@ -129,7 +129,7 @@ var UsuarioController = /** @class */ (function () {
                         }
                         else {
                             console.log('USUARIO SI EXISTE');
-                            res.send([true]);
+                            res.send([true, user[0].id]);
                         }
                         console.log(user[0]);
                         return [2 /*return*/];
