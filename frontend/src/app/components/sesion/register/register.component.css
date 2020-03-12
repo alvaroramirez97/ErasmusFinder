@@ -21,14 +21,9 @@
 
 .iniciosesion button{
     border-radius: 10px;
-    border: 2px solid black;
-    width: 45%;
+    width: 60%;
 }
 
-
-.iniciosesion button:hover{
-    background-color: yellow;
-}
 
 .inputfile{
     display: none;
@@ -39,12 +34,10 @@
 
     .inputtext{
         min-height: 25px;
+        min-width: 130px;
         font-size: 12px;
     }
 
-    .max-w{
-        min-width: 130px;
-    }
 
 }
 

@@ -1,35 +1,55 @@
-#divPerfil{
+.contenedor_perfil{
+    width: 90%;
+    margin: 10px auto;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.foto{
+    margin: 15px auto;
+    max-width: 150px;
+    grid-area: divFoto;
+}
+.foto img{
+    width: 95%;
+    max-width: 200px;
+    max-height: 200px;
+    border: 2px solid white;
+    border-radius: 15px;
+}
+
+.datos{
+    grid-area: divDatos;
+    padding: 10px;
+}
+
+#divDatos{
+    padding: 10px;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 2fr;
     grid-template-areas: "divFoto divDatos";
-    align-content: center;
-    margin-left: 250px;
-    margin-top: 70px;
-    margin-right: 50px;
-    border: 4px solid white;
-    border-radius: 5%;
-    background-color: lightskyblue;
-    padding-top: 15px;
-    padding-bottom: 15px;
 }
 
-#divFoto{
-    grid-area: divFoto;
-    align-self: center;
+#idiomas{
+    padding: 10px;
 }
-
-#divDatos{
-    grid-area: divDatos;
-    align-self: center;
-    margin-top: 45px;
-    margin-left: 30px;
-}
-
-#editarPerfil{
-    margin-left: 50px;
-}
-
 
 @media only screen and (max-width:991px){
+
+    h2{
+        font-size: 150%;
+    }
+
+    #divDatos{
+        padding: 10px;
+    }
+        
+    .foto{
+        width: 100%;
+    }
+    .foto img{
+        margin: auto;
+    }
+
 }

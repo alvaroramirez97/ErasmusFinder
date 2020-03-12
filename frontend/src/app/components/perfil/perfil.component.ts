@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/services/usuarios.service';
-import { Mimodelo } from 'src/app/modelos/mimodelo';
 import { FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
+import { MimodeloPerfil } from 'src/app/modelos/mimodeloPerfil';
 
 @Component({
   selector: 'app-perfil',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent implements OnInit {
 
-  public user: Mimodelo;
+  public user: MimodeloPerfil;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private serviceuser: UsuariosService) {
 
@@ -25,7 +25,6 @@ export class PerfilComponent implements OnInit {
         if (!res[0]) {
           this.router.navigate(['/login']);
         }
-
         this.user = res[0];
         console.log(idUser);
         console.log(res);
