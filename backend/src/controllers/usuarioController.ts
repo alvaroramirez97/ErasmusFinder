@@ -28,6 +28,19 @@ class UsuarioController {
         }
     }
 
+    
+    public async updateToken(req: Request, res: Response) {
+    
+        const token = await pool.query('UPDATE usuarios SET accessToken = ? WHERE email=?', [req.body.accessToken, req.body.email]);
+        
+        if (token.affectedRows == 0) {
+            res.send(false);
+        } else {
+            res.send(true);
+        }
+    }
+
+
     public async read(req: Request, res: Response) {
         const usuarios = await pool.query('SELECT * FROM usuarios', [req.body]);
         res.json(usuarios);
