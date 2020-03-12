@@ -36,17 +36,53 @@ export class LoginComponent implements OnInit {
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
+      this.loggedIn = (user != null);
       this.user = user;
       console.log(this.user);
-      this.loggedIn = (user != null);
+      this.modelo.existeEmail(this.user.email).subscribe(
+        res => {
+          console.log(res);
+          console.log(res[0]);
+          console.log(res[1]);
 
-      localStorage.setItem('token', user.idToken);
-      this.router.navigate(['/perfil']);
+          if (res[0] === false) {
+            this.router.navigate(['/login']);
+            console.log('NECESARIO REGISTRO');
+          } else {
+            localStorage.setItem('token', user.authToken);
+            localStorage.setItem('id', res[1]);
+            this.router.navigate(['/perfil']);
+          }
+        },
+        err => {
+          console.log(err);
+        }
+      );
     });
   }
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.authService.authState.subscribe((user) => {
+      this.loggedIn = (user != null);
+      this.user = user;
+      console.log(this.user);
+      this.modelo.existeEmail(this.user.email).subscribe(
+        res => {
+          if (res[0] === false) {
+            this.router.navigate(['/login']);
+            console.log('NECESARIO REGISTRO');
+          } else {
+            localStorage.setItem('token', user.idToken);
+            localStorage.setItem('id', res[1]);
+            this.router.navigate(['/login']);
+          }
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    });
   }
 
   signOut(): void {

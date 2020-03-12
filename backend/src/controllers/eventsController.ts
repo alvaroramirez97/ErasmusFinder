@@ -21,6 +21,13 @@ class EventsController{
         res.json("Evento Borrado");
     }
 
+    public async readEventosFiltrado(req:Request, res:Response){
+        const eventos = await pool.query('SELECT * FROM datosevento WHERE destino LIKE "%' + req.params.destino + '%" OR descripcion LIKE "%' + req.params.destino + '%"');
+        
+        res.json(eventos);
+        console.log("EVENTOS: ", eventos);
+    }
+
 }
 
 export const controladorEventos = new EventsController();
