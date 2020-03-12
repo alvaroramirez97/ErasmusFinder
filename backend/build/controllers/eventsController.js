@@ -86,6 +86,21 @@ var EventsController = /** @class */ (function () {
             });
         });
     };
+    EventsController.prototype.readEventosFiltrado = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var eventos;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, database_1.default.query('SELECT * FROM datosevento WHERE destino LIKE "%' + req.params.destino + '%" OR descripcion LIKE "%' + req.params.destino + '%"')];
+                    case 1:
+                        eventos = _a.sent();
+                        res.json(eventos);
+                        console.log("EVENTOS: ", eventos);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     return EventsController;
 }());
 exports.controladorEventos = new EventsController();
