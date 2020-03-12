@@ -20,7 +20,7 @@ export class EventosService {
   }
 
   getEventosFiltrado(destino: string): Observable<any> {
-    return this.http.get('http://localhost:3000/eventos/' + destino);
+    return this.http.get('http://localhost:3000/eventos/buscar/' + destino);
   }
 
 }
