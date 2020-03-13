@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MimodeloRegistro } from '../modelos/mimodeloRegistro';
 import { Mimodelo } from '../modelos/mimodelo';
+import { MimodeloToken } from '../modelos/mimodeloToken';
 
 
 @Injectable({
@@ -15,6 +16,7 @@ export class UsuariosService {
   crearUsuario(usuario: MimodeloRegistro): Observable<any> {
     return this.http.post('http://localhost:3000/usuarios/crear', usuario);
   }
+
 
   updateToken(usuario: Mimodelo): Observable<any> {
     return this.http.put('http://localhost:3000/usuarios/token', usuario);
