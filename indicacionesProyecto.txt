@@ -18,5 +18,5 @@ FRONTEND:
 npm install @angular-devkit/build-webpack
 
 Por si no funciona, ejecutar en el FRONTEND:
-npm install leaflet-map
+npm install leaflet
 npm install --save angularx-social-login
