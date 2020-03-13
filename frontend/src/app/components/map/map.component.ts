@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MapService } from 'src/app/services/map.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { EventosService } from 'src/app/services/eventos.service';
 
 declare var $: any;
 declare var L: any;
@@ -26,16 +27,16 @@ export class MapComponent implements OnInit {
     longi: 0
   };
 
-  constructor(private servicioPaises: MapService, private servicioUsuarios: UsuariosService) { }
+  constructor(private servicioPaises: MapService, private servicioUsuarios: UsuariosService, private servicioEventos: EventosService) { }
 
-   ngOnInit() {
+  ngOnInit() {
     this.cargarMarcadores(this.marcadores);
     this.servicioPaises.verPaises().subscribe(
       res => {
         res.forEach(pais => {
           const objeto = {
-            label : pais.nombre,
-            coord : [pais.latitud, pais.longitud]
+            label: pais.nombre,
+            coord: [pais.latitud, pais.longitud]
           };
           this.paises.push(objeto);
         });
@@ -51,7 +52,7 @@ export class MapComponent implements OnInit {
 
   updateDatos(datos: any) { // Actualizar datosuser
     if (navigator.geolocation) {
-      navigator.geolocation.watchPosition( function(position) {
+      navigator.geolocation.watchPosition(function (position) {
         console.log(position);
         datos.latitud = position.coords.latitude;
         datos.longitud = position.coords.longitude;
@@ -71,30 +72,30 @@ export class MapComponent implements OnInit {
         'ui-menu-item': 'elemento_autocomplete'
       },
       focus(event, ui) {
-         event.preventDefault();
-         $('#lati_buscada').val(ui.item.coord[0]);
-         $('#long_buscada').val(ui.item.coord[1]);
-         $('#pais_buscado').val(ui.item.label);
-         coor.lati = ui.item.coord[0];
-         coor.longi = ui.item.coord[1];
-     },
-     select(event, ui) {
-         event.preventDefault();
-         $('#lati_buscada').val(ui.item.coord[0]);
-         $('#long_buscada').val(ui.item.coord[1]);
-         $('#pais_buscado').val(ui.item.label);
-         coor.lati = ui.item.coord[0];
-         coor.longi = ui.item.coord[1];
+        event.preventDefault();
+        $('#lati_buscada').val(ui.item.coord[0]);
+        $('#long_buscada').val(ui.item.coord[1]);
+        $('#pais_buscado').val(ui.item.label);
+        coor.lati = ui.item.coord[0];
+        coor.longi = ui.item.coord[1];
+      },
+      select(event, ui) {
+        event.preventDefault();
+        $('#lati_buscada').val(ui.item.coord[0]);
+        $('#long_buscada').val(ui.item.coord[1]);
+        $('#pais_buscado').val(ui.item.label);
+        coor.lati = ui.item.coord[0];
+        coor.longi = ui.item.coord[1];
       }
     });
   }
 
 
-  cargarMapa(datos:any) {       // CREAR LOS MAPAS
+  cargarMapa(datos: any) {       // CREAR LOS MAPAS
     this.mapa = L.map('mapamundi');
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attributon: '&copy;<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attributon: '&copy;<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.mapa);
     datos.pointer.addTo(this.mapa);
     this.marcadores.addTo(this.mapa);
@@ -103,55 +104,75 @@ export class MapComponent implements OnInit {
     this.cargarUbi(datos);
   }
 
-  cargarMarcadores(marcas: any){  // CARGAR LOS MARCADORES DE LOS USUARIOS
+  cargarMarcadores(marcas: any) {  // CARGAR LOS MARCADORES DE LOS USUARIOS
 
     this.servicioUsuarios.getUsuarios().subscribe(
       res => {
         console.log(res);
         res.forEach(usu => {
-          var mar = L.marker([usu.last_latitud, usu.last_longitud], {
-            icon: L.icon({
+
+          if (usu.id !== localStorage.getItem('id')) {
+            const mar = L.marker([usu.last_latitud, usu.last_longitud], {
+              icon: L.icon({
                 iconUrl: './assets/img/iconos/mapa/user-pointer.png',
                 iconSize: [20, 20],
+              })
+            }).bindPopup('<h5>' + usu.nombre + ' ' + usu.apellidos + '</h5><br><a href="#">Ver perfil</a>');
+            marcas.addLayer(mar);
+          }
+
+        });
+      },
+      err => {
+        console.log(err);
+      });
+    this.servicioEventos.getEventos().subscribe(
+      res => {
+        res.forEach(event => {
+          var mar = L.marker([event.latitud, event.longitud], {
+            icon: L.icon({
+              iconUrl: './assets/img/iconos/mapa/event.png',
+              iconSize: [20, 20],
             })
-        }).bindPopup('<h5>' + usu.nombre + ' ' + usu.apellidos + '</h5><br><a href="#">Ver perfil</a>');
+          }).bindPopup('<h5>EVENTO</h5><p>' + event.descripcion + '</p><a href="/events/' + event.id_evento + '">Ver Evento</a>');
           marcas.addLayer(mar);
         });
       },
       err => {
         console.log(err);
       });
-    }
+
+  }
 
   cargarUbi(datos: any) {     // CARGAR MI UBICACION
     console.log('cargando Ubi');
     datos.pointer.clearLayers();
-    this.mapa.locate({setView: true, maxZoom: 16})
-        .on('locationfound', function(e) {
+    this.mapa.locate({ setView: true, maxZoom: 16 })
+      .on('locationfound', function (e) {
 
-            var marcador = L.marker([e.latitude, e.longitude], {
-                icon: L.icon({
-                    iconUrl: './assets/img/iconos/mapa/you.png',
-                    iconSize: [23, 23],
-                }),
-            }).bindPopup('<h5>Tu ubicacion</h5>');
-            datos.latitud = e.latitude;
-            datos.longitud = e.longitude;
-            const radio = L.circleMarker([e.latitude, e.longitude], {
-                radius: 20,
-                weight: 1,
-                color: 'white',
-                fillColor: '#34ebb7',
-                fillOpacity: 0.2
-            });
-            datos.pointer.addLayer(marcador);
-            datos.pointer.addLayer(radio);
-            console.log('datos', datos);
-        })
-       .on('locationerror', function(e){
-            console.log(e);
-            alert('Debes permitir la geolocalizacion');
+        var marcador = L.marker([e.latitude, e.longitude], {
+          icon: L.icon({
+            iconUrl: './assets/img/iconos/mapa/you.png',
+            iconSize: [23, 23],
+          }),
+        }).bindPopup('<h5>Tu ubicacion</h5>');
+        datos.latitud = e.latitude;
+        datos.longitud = e.longitude;
+        const radio = L.circleMarker([e.latitude, e.longitude], {
+          radius: 20,
+          weight: 1,
+          color: 'white',
+          fillColor: '#34ebb7',
+          fillOpacity: 0.2
         });
+        datos.pointer.addLayer(marcador);
+        datos.pointer.addLayer(radio);
+        console.log('datos', datos);
+      })
+      .on('locationerror', function (e) {
+        console.log(e);
+        alert('Debes permitir la geolocalizacion');
+      });
 
   }
 

@@ -27,13 +27,14 @@ export class RegisterComponent implements OnInit {
       apellidos: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
-      id_pais: ['', Validators.required],
+      id_pais: [''],
       foto: ['']
     });
   }
 
   ngOnInit() {
     this.cargarPaises();
+    
   }
 
   submit() {

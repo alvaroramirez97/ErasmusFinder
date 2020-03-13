@@ -29,6 +29,10 @@
     display: none;
 }
 
+.escondido{
+    display: none;
+}
+
 
 @media only screen and (max-width:991px){
 
