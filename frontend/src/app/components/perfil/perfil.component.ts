@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/services/usuarios.service';
-import { FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MimodeloPerfil } from 'src/app/modelos/mimodeloPerfil';
 
@@ -46,10 +46,10 @@ export class PerfilComponent implements OnInit {
     const idUser = localStorage.getItem('id');
     this.serviceuser.deleteUsuario(idUser).subscribe(
       res => {
+        this.serviceuser.logOut();
         console.log(res);
         localStorage.removeItem('token');
         localStorage.removeItem('id');
-        
         console.log('Usuario borrado correctamente');
       },
       err => {
