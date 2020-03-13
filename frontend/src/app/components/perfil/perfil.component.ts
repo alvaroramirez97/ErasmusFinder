@@ -49,7 +49,6 @@ export class PerfilComponent implements OnInit {
         console.log(res);
         localStorage.removeItem('token');
         localStorage.removeItem('id');
-        
         console.log('Usuario borrado correctamente');
       },
       err => {
