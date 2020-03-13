@@ -42,4 +42,22 @@ export class PerfilComponent implements OnInit {
     );
   }
 
+  borrarUser() {
+    const idUser = localStorage.getItem('id');
+    this.serviceuser.deleteUsuario(idUser).subscribe(
+      res => {
+        console.log(res);
+        localStorage.removeItem('token');
+        localStorage.removeItem('id');
+        
+        console.log('Usuario borrado correctamente');
+      },
+      err => {
+        console.log(err);
+        this.router.navigate(['/perfil']);
+        console.log('No se puede borrar el usuario');
+      }
+    )
+  }
+
 }
