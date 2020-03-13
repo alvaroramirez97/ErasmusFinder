@@ -2,7 +2,7 @@
 <div class="contenedor_perfil">
     <div id="divDatos" *ngIf="user">
         <div class="foto">
-            <img *ngIf="this.user.foto.length>2 else default" class="img" src="../../../assets/img/users-img/{{user.foto}}">
+            <img *ngIf="this.user.foto else default" class="img" src="../../../assets/img/users-img/{{user.foto}}">
           <ng-template #default>
             <img class="img" src="../../../assets/img/default-user.png">
           </ng-template>
@@ -15,14 +15,21 @@
             <h2><b>Email:</b> {{user.email}}</h2><br>
         </div>
     </div>
-
+<!-- 
+    PARA FUTURAS VERSIONES
     <div id="idiomas">
         <h2>Idiomas</h2>
     </div>
+-->
 
     <br><br>
     <div id="editarPerfil">
-        <a href="/login" (click)="borrarUser()"><h4>Borrar usuario</h4></a>
+        <a href="/login" class="btn btn-danger btn-block" (click)="borrarUser()">Borrar usuario</a>
+        
+        <a href="/login" class="btn btn-dark btn-block" (click)="this.serviceuser.logOut()" >
+            Cerrar Sesion
+        </a>
 
     </div>
+    <br><br>
 </div>

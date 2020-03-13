@@ -1,6 +1,7 @@
 .contenedor_perfil{
     width: 90%;
     margin: 10px auto;
+    padding: 10px;
     border: 1px solid black;
     border-radius: 15px;
 }

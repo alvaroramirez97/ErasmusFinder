@@ -106,26 +106,6 @@ export class MapComponent implements OnInit {
 
   cargarMarcadores(marcas: any) {  // CARGAR LOS MARCADORES DE LOS USUARIOS
 
-    this.servicioUsuarios.getUsuarios().subscribe(
-      res => {
-        console.log(res);
-        res.forEach(usu => {
-
-          if (usu.id !== localStorage.getItem('id') && usu.last_latitud !== 0 && usu.last_longitud !== 0) {
-            const mar = L.marker([usu.last_latitud, usu.last_longitud], {
-              icon: L.icon({
-                iconUrl: './assets/img/iconos/mapa/user-pointer.png',
-                iconSize: [20, 20],
-              })
-            }).bindPopup('<h5>' + usu.nombre + ' ' + usu.apellidos + '</h5>');
-            marcas.addLayer(mar);
-          }
-
-        });
-      },
-      err => {
-        console.log(err);
-      });
     this.servicioEventos.getEventos().subscribe(
       res => {
         res.forEach(event => {
@@ -136,6 +116,28 @@ export class MapComponent implements OnInit {
             })
           }).bindPopup('<h5>EVENTO</h5><p>' + event.descripcion + '</p><a href="/events/' + event.id_evento + '">Ver Evento</a>');
           marcas.addLayer(mar);
+        });
+      },
+      err => {
+        console.log(err);
+      });
+
+
+    this.servicioUsuarios.getUsuarios().subscribe(
+      res => {
+        console.log(res);
+        res.forEach(usu => {
+
+          if (usu.id != localStorage.getItem('id') && usu.last_latitud != 0 && usu.last_longitud != 0) {
+            const mar = L.marker([usu.last_latitud, usu.last_longitud], {
+              icon: L.icon({
+                iconUrl: './assets/img/iconos/mapa/user-pointer.png',
+                iconSize: [20, 20],
+              })
+            }).bindPopup('<h5>' + usu.nombre + ' ' + usu.apellidos + '</h5>');
+            marcas.addLayer(mar);
+          }
+
         });
       },
       err => {
