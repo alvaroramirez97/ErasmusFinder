@@ -1,0 +1,22 @@
+
+-------------
+INDICACIONES
+-------------
+La base de datos contiene el nombre de los países en inglés, por lo que a la hora de registrar
+un usuario, en el campo país de origen, autocompleta por el nombre del país en inglés.
+Pasa lo mismo en la vista mapa, a la hora de buscar cualquier país.
+
+
+
+-------------------
+COMANDOS NECESARIOS
+-------------------
+BACKEND:
+npm install express
+
+FRONTEND:
+npm install @angular-devkit/build-webpack
+
+Por si no funciona, ejecutar en el FRONTEND:
+npm install leaflet-map
+npm install --save angularx-social-login
