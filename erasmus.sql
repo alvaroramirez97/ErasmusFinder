@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-03-2020 a las 19:19:28
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 13-03-2020 a las 23:03:26
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `erasmus`
 --
+CREATE DATABASE erasmus;
+USE eramus;
 
 -- --------------------------------------------------------
 
@@ -47,7 +49,8 @@ INSERT INTO `datosevento` (`id_evento`, `id_organizador`, `destino`, `descripcio
 (2, 4, 'Venecia', 'Quedada en la plaza de San Marcos', '2020-03-25', 45.4341, 12.33),
 (3, 3, 'Las Bahamas', 'Un paraíso', '2020-02-29', -77.37, 25.94),
 (4, 3, 'Tomelloso', 'Quedada en Tomelloso', '2020-04-22', 39.16, -3.011),
-(5, 12, 'Alcázar de San Juan', 'Reunión en el Juan Bosco', '2020-03-31', 39.3913, -3.2234);
+(5, 12, 'Alcázar de San Juan', 'Reunión en el Juan Bosco', '2020-03-31', 39.3913, -3.2234),
+(6, 8, 'España', 'Feria de sabores en la Gran Via de Madrid', '2020-02-29', 40.405199, -3.696711);
 
 -- --------------------------------------------------------
 
@@ -356,7 +359,7 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `email`, `password`, `last_
 (4, 'Paco', 'Perez', 'paco@correo.com', '123', '0000-00-00', 2.35, 46.05, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InBhY29AY29ycmVvLmNvbSIsImlhdCI6MTU4Mzg2ODA3MSwiZXhwIjoxNTgzOTU0NDcxfQ.uhQ8ciULimwGVRqS-ZrukRHLxzcpY004exSASCmyWkM', NULL),
 (6, 'Antonio', 'Onion', 'toni@gmail.com', '1234', '0000-00-00', 10.05, 51.05, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRvbmlAZ21haWwuY29tIiwiaWF0IjoxNTgyMjEyMTQ1LCJleHAiOjE1ODIyOTg1NDV9.nZDjMJlnxW0Qn7tdmGsd9Wi8g_rWQnNp7EUGEtD31AY', 'C:\\fakepath\\logo.png'),
 (7, 'Josico', 'Jose', 'jose@correo.com', '1234', '0000-00-00', -2.69, 54.75, 1, '', 'C:\\fakepath\\22-04-06_1655.jpg'),
-(8, 'jaime', 'marquina', 'jaimemarquina96@gmail.com', '1234', '0000-00-00', -2, 53, 1, 'ya29.a0Adw1xeVSDhWqPvbhiqJYfRHlnhI0IsZp_tJJk3v_iRNiIg7wnUds0o9kZaFPysAbwYkonBFFizbnaFYmpTISDp354H3AN9dFYpywW3ztuHjS5tX81IHO2OZUNAkXdxbAm8r7UJ3M032Cc8o3r90sZcpF53FXzmupHFyT', 'C:\\fakepath\\22-04-06_1655.jpg'),
+(8, 'jaime', 'marquina', 'jaimemarquina96@gmail.com', '1234', '0000-00-00', -3.20003, 39.392938, 1, 'ya29.a0Adw1xeVSDhWqPvbhiqJYfRHlnhI0IsZp_tJJk3v_iRNiIg7wnUds0o9kZaFPysAbwYkonBFFizbnaFYmpTISDp354H3AN9dFYpywW3ztuHjS5tX81IHO2OZUNAkXdxbAm8r7UJ3M032Cc8o3r90sZcpF53FXzmupHFyT', 'C:\\fakepath\\22-04-06_1655.jpg'),
 (9, 'jaime', 'marquina', 'jaime_marquina@hotmail.com', '123', '0000-00-00', 12.83, 42.8, 1, 'EAAHEo5Pyc6ABAJ7Qugo5ZAy1RdJleC0gDBKKbtS1hNdVkYOjfemkQgAySIeWcfaGq2IFFTh34fgMmqNEYWAy613iLN1goBYHgpWyZBRAZAy3sq4ZBIOKyHuDGAHY3JHfw3NZAQzkAzyhyZAW61tkCsS09SmyNa3ejFYdE9308mBoVkc9gUrkxS', 'C:\\fakepath\\22-04-06_1655.jpg'),
 (11, 'Fran', 'Cuesta', 'fran@correo.com', '1234', '0000-00-00', 10, 56, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZyYW5AY29ycmVvLmNvbSIsImlhdCI6MTU4NDExNDkyOCwiZXhwIjoxNTg0MjAxMzI4fQ.9fasm2tHP1NbMkJZX33hseKRAZ9Rn6pyNKmvQfkNNFE', ''),
 (12, 'Jesus', 'Gil', 'jesus@correo.com', '1234', '0000-00-00', 40, 55, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Implc3VzQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTUxNDMsImV4cCI6MTU4NDIwMTU0M30.-Kxa1Yykim279nfMo4_rvcA8H0QPIIO8lJhes_qyXHg', ''),
@@ -364,9 +367,10 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `email`, `password`, `last_
 (14, 'Sara', 'Pastor', 'sara@correo.com', '1234', '0000-00-00', -98, 39.5, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InNhcmFAY29ycmVvLmNvbSIsImlhdCI6MTU4NDExNTYxNiwiZXhwIjoxNTg0MjAyMDE2fQ.6Mb4SO48h3kTpWmXyM91ciCKhZ5lETSD8M6zeUWSsVQ', ''),
 (15, 'Fer', 'Diaz', 'fer@correo.com', '1234', '0000-00-00', -93.5, 33.76, 3, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZlckBjb3JyZW8uY29tIiwiaWF0IjoxNTg0MTE1NjM3LCJleHAiOjE1ODQyMDIwMzd9.11sGK8w7knCtVFoFKvt6feM9L-XquMfvujOoj8vhYB4', ''),
 (16, 'Ruben', 'Perez', 'ruben@correo.com', '123', '0000-00-00', -54, -10, 12, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InJ1YmVuQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTU4NjEsImV4cCI6MTU4NDIwMjI2MX0.gyrLDsoEC_0CR0ANEDZMRrsvh3zfvVUA0Gll1QYX4Ps', ''),
-(17, 'Pablo', 'Marco', 'pablo@correo.com', '123', '0000-00-00', -78.25, -1.25, 11, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InBhYmxvQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTU4OTMsImV4cCI6MTU4NDIwMjI5M30.uVeX6aQ2JjtzCMwwUt5cEjj2wmpYYn7oVliMQf5DsLY', ''),
+(17, 'Pablo', 'Marco', 'pablo@correo.com', '123', '0000-00-00', -4.032048, 39.859158, 11, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InBhYmxvQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTU4OTMsImV4cCI6MTU4NDIwMjI5M30.uVeX6aQ2JjtzCMwwUt5cEjj2wmpYYn7oVliMQf5DsLY', ''),
 (18, 'Mercedes', 'Mila', 'mercedes@correo.com', '123', '0000-00-00', -73.25, 4, 14, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1lcmNlZGVzQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTU5MTgsImV4cCI6MTU4NDIwMjMxOH0.U3FdQzIWDwn3YLDhV1cP-vLnJJVLyFVr5A-lq6xAYz0', ''),
-(19, 'Marta', 'Cañego', 'marta@correo.com', '123', '0000-00-00', -75.25, -10, 13, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1hcnRhQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTU5MzgsImV4cCI6MTU4NDIwMjMzOH0.lGIif1m_65z2e52ZM5O2XTz_m0Yh6T2BRkIFCCUjT2o', '');
+(19, 'Marta', 'Cañego', 'marta@correo.com', '123', '0000-00-00', -75.25, -10, 13, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1hcnRhQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTU5MzgsImV4cCI6MTU4NDIwMjMzOH0.lGIif1m_65z2e52ZM5O2XTz_m0Yh6T2BRkIFCCUjT2o', ''),
+(25, 'Alvaro', 'Ramirez', 'alvaroramirez1600@gmail.com', '1234', '0000-00-00', -3.013479, 39.169575, 5, 'ya29.a0Adw1xeWRapsMepJGW9DYzXRJ2muwZp62KARcdtv21vbJcg5R4hhjKJCUJhqQLoAi25EgfrSYp16gUrlkCQAN7mFH7oCFz4LlxC3ekq8RK8J4JqudkTholYjMK6jP5uoffB-EPxXpCbO3tX7_UToE8ddjo5kyyTIc5r7v', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -421,7 +425,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `datosevento`
 --
 ALTER TABLE `datosevento`
-  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_evento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `datosidiomas`
@@ -439,7 +443,7 @@ ALTER TABLE `ubicaciones`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Restricciones para tablas volcadas
