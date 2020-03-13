@@ -1,6 +1,6 @@
 
 <div class="contenedor_perfil">
-    <div id="divDatos">
+    <div id="divDatos" *ngIf="user">
         <div class="foto">
             <img *ngIf="this.user.foto.length>2 else default" class="img" src="../../../assets/img/users-img/{{user.foto}}">
           <ng-template #default>
@@ -23,5 +23,7 @@
     <br><br>
     <div id="editarPerfil">
         <a href="#"><h4>Editar perfil</h4></a>
+        <a href="/login" (click)="borrarUser()"><h4>Borrar usuario</h4></a>
+
     </div>
 </div>

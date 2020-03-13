@@ -30,9 +30,9 @@ class UsuarioController {
 
     
     public async updateToken(req: Request, res: Response) {
-    
+        console.log(req.body);
         const token = await pool.query('UPDATE usuarios SET accessToken = ? WHERE email=?', [req.body.accessToken, req.body.email]);
-        
+        console.log('tokeen:', token);
         if (token.affectedRows == 0) {
             res.send(false);
         } else {

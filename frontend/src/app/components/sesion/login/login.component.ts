@@ -2,11 +2,11 @@ import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Mimodelo } from 'src/app/modelos/mimodelo';
 import { UsuariosService } from 'src/app/services/usuarios.service';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 // Login redes sociales
 import { AuthService } from 'angularx-social-login';
-import { GoogleLoginProvider , FacebookLoginProvider } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
 
 @Component({
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   signInWithGoogle(): void {
@@ -47,11 +48,26 @@ export class LoginComponent implements OnInit {
 
           if (res[0] === false) {
             this.router.navigate(['/login']);
-            console.log('NECESARIO REGISTRO');
+            alert('NECESARIO REGISTRO');
           } else {
-            localStorage.setItem('token', user.authToken);
-            localStorage.setItem('id', res[1]);
-            this.router.navigate(['/perfil']);
+            const datos = {
+              email: this.user.email,
+              accessToken: user.authToken
+            };
+            this.modelo.updateToken(datos).subscribe(
+              resu => {
+                console.log('res:', resu);
+                if (resu) {
+                  localStorage.setItem('token', datos.accessToken);
+                  localStorage.setItem('id', res[1]);
+                  this.router.navigate(['/perfil']);
+                }
+
+              },
+              err => {
+                console.log(err);
+              }
+            );
           }
         },
         err => {
@@ -73,9 +89,24 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/login']);
             console.log('NECESARIO REGISTRO');
           } else {
-            localStorage.setItem('token', user.idToken);
-            localStorage.setItem('id', res[1]);
-            this.router.navigate(['/login']);
+            const datos = {
+              email: this.user.email,
+              accessToken: user.authToken
+            };
+            this.modelo.updateToken(datos).subscribe(
+              resu => {
+                console.log('res:', resu);
+                if (resu) {
+                  localStorage.setItem('token', datos.accessToken);
+                  localStorage.setItem('id', res[1]);
+                  this.router.navigate(['/perfil']);
+                }
+
+              },
+              err => {
+                console.log(err);
+              }
+            );
           }
         },
         err => {
