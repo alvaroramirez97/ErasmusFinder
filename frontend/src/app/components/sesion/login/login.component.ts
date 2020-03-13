@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
           if (res[0] === false) {
             this.router.navigate(['/login']);
             alert('NECESARIO REGISTRO');
+
           } else {
             const datos = {
               email: this.user.email,

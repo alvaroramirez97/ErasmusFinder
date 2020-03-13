@@ -15,19 +15,21 @@
             <h2><b>Email:</b> {{user.email}}</h2><br>
         </div>
     </div>
-
+<!-- 
+    PARA FUTURAS VERSIONES
     <div id="idiomas">
         <h2>Idiomas</h2>
     </div>
+-->
 
     <br><br>
     <div id="editarPerfil">
-        <a href="#"><h4>Editar perfil</h4></a>
-        <a href="/login" (click)="borrarUser()"><h4>Borrar usuario</h4></a>
+        <a href="/login" class="btn btn-danger btn-block" (click)="borrarUser()">Borrar usuario</a>
+        
+        <a href="/login" class="btn btn-dark btn-block" (click)="this.serviceuser.logOut()" >
+            Cerrar Sesion
+        </a>
 
     </div>
     <br><br>
-    <div class="borrarPerfil">
-        <a href="#"><h4>BORRAR perfil</h4></a>
-    </div>
 </div>

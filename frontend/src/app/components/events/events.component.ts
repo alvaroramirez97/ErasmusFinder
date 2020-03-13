@@ -14,9 +14,15 @@ export class EventsComponent implements OnInit {
   public lista_eventos: any;
   public id: any;
 
-  constructor( public servicioEventos: EventosService, private router: Router) { }
+  constructor(public servicioEventos: EventosService, private router: Router) { }
 
   ngOnInit() {
+    this.listarTodos();
+  }
+
+  listarTodos() {
+    console.log('toodo');
+
     this.servicioEventos.getEventos().subscribe(
       res => {
         console.log(res);
@@ -30,16 +36,26 @@ export class EventsComponent implements OnInit {
 
   buscar() {
     const destino = $('#destino_buscado').val().toString();
-    console.log(destino);
-    this.servicioEventos.getEventosFiltrado(destino).subscribe(
-      res => {
-        console.log(res);
-        this.lista_eventos = res;
-        this.router.navigate(['/events']);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    if (destino.length == 0) {
+      this.listarTodos();
+    } else {
+      console.log(destino);
+      this.servicioEventos.getEventosFiltrado(destino).subscribe(
+        res => {
+          console.log(res);
+          this.lista_eventos = res;
+          this.router.navigate(['/events']);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+
   }
+
+
+
+
+
 }

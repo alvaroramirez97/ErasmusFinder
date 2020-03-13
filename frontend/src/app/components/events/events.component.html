@@ -1,7 +1,6 @@
 <div>
     <h1>EVENTOS</h1>
-    Busqueda: <br><input class="input_busqueda" type="text" name="destino" id="destino_buscado"/><br><br>
-    <a><input id="buscar" class="boton btn btn-primary" type="button" value="BUSCAR" (click)="buscar()" ></a>
+    Busqueda: <br><input class="input_busqueda" type="text" name="destino" id="destino_buscado" (keyup)="buscar()" /><br><br>
     <div class="listaUsers" *ngFor="let item of lista_eventos">
         <h2 [id] = "item.id">{{item.id}}</h2>
         <h2>{{ item.destino }}</h2>

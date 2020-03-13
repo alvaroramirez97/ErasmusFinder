@@ -106,6 +106,23 @@ export class MapComponent implements OnInit {
 
   cargarMarcadores(marcas: any) {  // CARGAR LOS MARCADORES DE LOS USUARIOS
 
+    this.servicioEventos.getEventos().subscribe(
+      res => {
+        res.forEach(event => {
+          var mar = L.marker([event.latitud, event.longitud], {
+            icon: L.icon({
+              iconUrl: './assets/img/iconos/mapa/event.png',
+              iconSize: [20, 20],
+            })
+          }).bindPopup('<h5>EVENTO</h5><p>' + event.descripcion + '</p><a href="/events/' + event.id_evento + '">Ver Evento</a>');
+          marcas.addLayer(mar);
+        });
+      },
+      err => {
+        console.log(err);
+      });
+
+
     this.servicioUsuarios.getUsuarios().subscribe(
       res => {
         console.log(res);
@@ -121,21 +138,6 @@ export class MapComponent implements OnInit {
             marcas.addLayer(mar);
           }
 
-        });
-      },
-      err => {
-        console.log(err);
-      });
-    this.servicioEventos.getEventos().subscribe(
-      res => {
-        res.forEach(event => {
-          var mar = L.marker([event.latitud, event.longitud], {
-            icon: L.icon({
-              iconUrl: './assets/img/iconos/mapa/event.png',
-              iconSize: [20, 20],
-            })
-          }).bindPopup('<h5>EVENTO</h5><p>' + event.descripcion + '</p><a href="/events/' + event.id_evento + '">Ver Evento</a>');
-          marcas.addLayer(mar);
         });
       },
       err => {
