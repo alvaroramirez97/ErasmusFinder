@@ -1,4 +1,7 @@
 <form method="POST" [formGroup]="formRegister" (submit)="submit()">
+    <div class="entrada" *ngIf="this.formRegister.invalid">
+        HAY CAMPOS OBLIGATORIOS
+    </div>
     <div class="entrada">
         <img src="../../../../assets/img/iconos/man-user.png">
         <input class="inputtext" type="text" formControlName="nombre" placeholder=" Nombre..."><br>
@@ -17,7 +20,8 @@
     </div>
     <div class="entrada">
         <img src="../../../../assets/img/iconos/earth.png">
-        <input class="inputtext" type="text" formControlName="id_pais" placeholder=" País de Origen..."><br>
+        <input class="inputtext" type="text" id="pais_autocomplete" placeholder=" País de Origen..." (keyup)="autocompletar(this.paises)"><br>
+        <input class="inputtext escondido" type="text" formControlName="id_pais" id="id_autocomplete" placeholder=" id pais..."><br>
     </div>
     <div class="entrada">
         <img src="../../../../assets/img/iconos/photo-camera.png">
