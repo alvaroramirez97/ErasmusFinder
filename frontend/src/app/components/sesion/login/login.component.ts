@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
 
               },
               err => {
-
+                console.log(err);
               }
             );
           }
@@ -89,9 +89,24 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/login']);
             console.log('NECESARIO REGISTRO');
           } else {
-            localStorage.setItem('token', user.idToken);
-            localStorage.setItem('id', res[1]);
-            this.router.navigate(['/login']);
+            const datos = {
+              email: this.user.email,
+              accessToken: user.authToken
+            };
+            this.modelo.updateToken(datos).subscribe(
+              resu => {
+                console.log('res:', resu);
+                if (resu) {
+                  localStorage.setItem('token', datos.accessToken);
+                  localStorage.setItem('id', res[1]);
+                  this.router.navigate(['/perfil']);
+                }
+
+              },
+              err => {
+                console.log(err);
+              }
+            );
           }
         },
         err => {
