@@ -134,7 +134,11 @@ export class MapComponent implements OnInit {
                 iconUrl: './assets/img/iconos/mapa/user-pointer.png',
                 iconSize: [20, 20],
               })
+<<<<<<< HEAD
             }).bindPopup('<h5>' + usu.nombre + ' ' + usu.apellidos + '</h5><p>' + usu.email + '</p>');
+=======
+            }).bindPopup('<h5>' + usu.nombre + ' ' + usu.apellidos + '</h5>');
+>>>>>>> 59474692f45062f3fafca735dfc6f84bdeaae64d
             marcas.addLayer(mar);
           }
 
