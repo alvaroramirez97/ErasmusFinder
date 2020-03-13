@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MimodeloRegistro } from 'src/app/modelos/mimodeloRegistro';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Router } from '@angular/router';
+import { MapService } from 'src/app/services/map.service';
 
 
 declare var $: any;
@@ -17,27 +18,34 @@ export class RegisterComponent implements OnInit {
   public formRegister: FormGroup;
   public misusuarios: MimodeloRegistro;
 
-  constructor(private formBuilder: FormBuilder, private mimodelo: UsuariosService, private router: Router) {
+  public paises = [];
+
+  constructor(private formBuilder: FormBuilder, private mimodelo: UsuariosService, private router: Router,
+    private servicioPaises: MapService) {
     this.formRegister = formBuilder.group({
-      nombre: [''],
-      apellidos: [''],
-      email: [''],
-      password: [''],
+      nombre: ['', Validators.required],
+      apellidos: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
       id_pais: [''],
       foto: ['']
     });
   }
 
   ngOnInit() {
+    this.cargarPaises();
+    
   }
 
   submit() {
+    this.formRegister.value.id_pais = $('#id_autocomplete').val();
+    console.log(this.formRegister);
     this.mimodelo.crearUsuario(this.formRegister.value).subscribe(
       res => {
         if (!res[0]) {
 
           this.router.navigate(['/register']);
-        } else{
+        } else {
           console.log(res);
 
           localStorage.setItem('token', res[1]);
@@ -52,10 +60,26 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  autocompletar(lista: Array<any>, coor: any) { // AUTOCOMPLETAR CAMPO DE IDIOMAS
-    console.log('FUNCION-> autocompletar()');
+  cargarPaises() {
+    this.servicioPaises.verPaises().subscribe(
+      res => {
+        res.forEach(pais => {
+          const objeto = {
+            label: pais.nombre,
+            id: pais.id_pais
+          };
+          this.paises.push(objeto);
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
-    $('#pais_buscado').autocomplete({
+  autocompletar(lista: Array<any>) { // AUTOCOMPLETAR CAMPO DE IDIOMAS
+
+    $('#pais_autocomplete').autocomplete({
       source: lista,
       minLength: 2,
       classes: {
@@ -64,19 +88,13 @@ export class RegisterComponent implements OnInit {
       },
       focus(event, ui) {
         event.preventDefault();
-        $('#lati_buscada').val(ui.item.coord[0]);
-        $('#long_buscada').val(ui.item.coord[1]);
-        $('#pais_buscado').val(ui.item.label);
-        coor.lati = ui.item.coord[0];
-        coor.longi = ui.item.coord[1];
+        $('#id_autocomplete').val(ui.item.id);
+        $('#pais_autocomplete').val(ui.item.label);
       },
       select(event, ui) {
         event.preventDefault();
-        $('#lati_buscada').val(ui.item.coord[0]);
-        $('#long_buscada').val(ui.item.coord[1]);
-        $('#pais_buscado').val(ui.item.label);
-        coor.lati = ui.item.coord[0];
-        coor.longi = ui.item.coord[1];
+        $('#id_autocomplete').val(ui.item.id);
+        $('#pais_autocomplete').val(ui.item.label);
       }
     });
   }
