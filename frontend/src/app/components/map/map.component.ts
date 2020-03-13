@@ -111,7 +111,7 @@ export class MapComponent implements OnInit {
         console.log(res);
         res.forEach(usu => {
 
-          if (usu.id !== localStorage.getItem('id')) {
+          if (usu.id !== localStorage.getItem('id') && usu.last_latitud !== 0 && usu.last_longitud !== 0) {
             const mar = L.marker([usu.last_latitud, usu.last_longitud], {
               icon: L.icon({
                 iconUrl: './assets/img/iconos/mapa/user-pointer.png',
