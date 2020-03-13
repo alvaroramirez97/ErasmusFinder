@@ -17,8 +17,9 @@ export class UsuariosService {
     return this.http.post('http://localhost:3000/usuarios/crear', usuario);
   }
 
-  updateToken(token: MimodeloToken): Observable<any> {
-    return this.http.post('http://localhost:3000/usuarios/token', token);
+
+  updateToken(usuario: Mimodelo): Observable<any> {
+    return this.http.put('http://localhost:3000/usuarios/token', usuario);
   }
 
   getLogin(usuario: Mimodelo): Observable<any> {

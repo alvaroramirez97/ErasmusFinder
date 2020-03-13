@@ -81,9 +81,12 @@ var UsuarioController = /** @class */ (function () {
             var token;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET accessToken = ? WHERE email=?', [req.body.accessToken, req.body.email])];
+                    case 0:
+                        console.log(req.body);
+                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET accessToken = ? WHERE email=?', [req.body.accessToken, req.body.email])];
                     case 1:
                         token = _a.sent();
+                        console.log('tokeen:', token);
                         if (token.affectedRows == 0) {
                             res.send(false);
                         }
