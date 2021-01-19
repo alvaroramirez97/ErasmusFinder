@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
       apellidos: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
+      idioma: ['', Validators.required],
       id_pais: [''],
       foto: ['']
     });
@@ -129,5 +130,7 @@ export class RegisterComponent implements OnInit {
     return this.formRegister.get('foto');
   }
 
-
+  get idioma() {
+    return this.formRegister.get('idioma')
+  }
 }

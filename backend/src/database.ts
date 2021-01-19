@@ -4,7 +4,7 @@ const conexion = {
     database:{
         host: 'localhost',
         user: 'root',
-        password: '',
+        password: 'toor',
         database: 'erasmus',
         port: 3306
     }

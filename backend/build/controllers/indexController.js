@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.controladorInicio = void 0;
 var path = require('path');
 var IndexController = /** @class */ (function () {
     function IndexController() {
