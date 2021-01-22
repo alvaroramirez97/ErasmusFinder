@@ -24,7 +24,7 @@
     "angularx-social-login": "^2.2.1",
     "bcryptjs": "^2.4.3",
     "core-js": "^3.6.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-autocomplete": "^1.2.8",
     "jquery-ui-dist": "^1.12.1",
     "jsonwebtoken": "^8.5.1",
