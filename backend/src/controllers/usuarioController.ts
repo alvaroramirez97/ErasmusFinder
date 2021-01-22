@@ -3,6 +3,8 @@ import pool from '../database';
 
 const secret_key = 'secretkey';
 const jwt = require('jsonwebtoken');
+const salt = '$2b$10$tDku1TnjNl/3QjoKKXKcxO'
+var bcrypt = require('bcrypt');
 
 class UsuarioController {
     index(req: Request, res: Response) {
@@ -10,6 +12,7 @@ class UsuarioController {
     }
 
     public async create(req: Request, res: Response) {
+        req.body.password = bcrypt.hashSync(req.body.password, salt);  
         const usuario = await pool.query('INSERT INTO usuarios SET ?', [req.body]);
         console.log(usuario);
         if (usuario.affectedRows == 0) {
@@ -73,16 +76,12 @@ class UsuarioController {
         console.log(user[0]);
     }
 
-
+    
     public async readLogin(req: Request, res: Response) {
-        console.log(req.body);
-        const usuarios = await pool.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password]);
-        console.log(usuarios);
-
-        if (usuarios.length == 0) {
-            res.send([false]);
-        }
-        else {
+        const usuarios = await pool.query('SELECT * FROM usuarios WHERE email=?', [req.body.email]);
+        const comparacion = bcrypt.compareSync(req.body.password, usuarios[0].password);
+        console.log
+        if (comparacion){
             //res.json(usuarios);
             const expiresIn = 24 * 60 * 60;
             const accessToken = jwt.sign({ id: req.body.email },
@@ -91,12 +90,13 @@ class UsuarioController {
             console.log(accessToken);
 
             // const fecha: Date = new Date();
-            await pool.query('UPDATE usuarios SET accessToken = ? WHERE email=? AND password=?', [accessToken, req.body.email, req.body.password]);
+            await pool.query('UPDATE usuarios SET accessToken = ? WHERE email=? AND password=?', [accessToken, req.body.email, usuarios[0].password]);
 
             res.send([accessToken, usuarios[0]]);
+        }else {
+            res.send([false]);
         }
     }
-
 
 }
 

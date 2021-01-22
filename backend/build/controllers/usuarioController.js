@@ -43,6 +43,8 @@ exports.controladorUsuario = void 0;
 var database_1 = __importDefault(require("../database"));
 var secret_key = 'secretkey';
 var jwt = require('jsonwebtoken');
+var salt = '$2b$10$tDku1TnjNl/3QjoKKXKcxO';
+var bcrypt = require('bcrypt');
 var UsuarioController = /** @class */ (function () {
     function UsuarioController() {
     }
@@ -53,7 +55,9 @@ var UsuarioController = /** @class */ (function () {
             var usuario, expiresIn, accessToken, _a, _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query('INSERT INTO usuarios SET ?', [req.body])];
+                    case 0:
+                        req.body.password = bcrypt.hashSync(req.body.password, salt);
+                        return [4 /*yield*/, database_1.default.query('INSERT INTO usuarios SET ?', [req.body])];
                     case 1:
                         usuario = _c.sent();
                         console.log(usuario);
@@ -177,28 +181,27 @@ var UsuarioController = /** @class */ (function () {
     };
     UsuarioController.prototype.readLogin = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var usuarios, expiresIn, accessToken;
+            var usuarios, comparacion, expiresIn, accessToken;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        console.log(req.body);
-                        return [4 /*yield*/, database_1.default.query('SELECT * FROM usuarios WHERE email=? AND password=?', [req.body.email, req.body.password])];
+                    case 0: return [4 /*yield*/, database_1.default.query('SELECT * FROM usuarios WHERE email=?', [req.body.email])];
                     case 1:
                         usuarios = _a.sent();
-                        console.log(usuarios);
-                        if (!(usuarios.length == 0)) return [3 /*break*/, 2];
-                        res.send([false]);
-                        return [3 /*break*/, 4];
-                    case 2:
+                        comparacion = bcrypt.compareSync(req.body.password, usuarios[0].password);
+                        console.log;
+                        if (!comparacion) return [3 /*break*/, 3];
                         expiresIn = 24 * 60 * 60;
                         accessToken = jwt.sign({ id: req.body.email }, secret_key, { expiresIn: expiresIn });
                         console.log(accessToken);
                         // const fecha: Date = new Date();
-                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET accessToken = ? WHERE email=? AND password=?', [accessToken, req.body.email, req.body.password])];
-                    case 3:
+                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET accessToken = ? WHERE email=? AND password=?', [accessToken, req.body.email, usuarios[0].password])];
+                    case 2:
                         // const fecha: Date = new Date();
                         _a.sent();
                         res.send([accessToken, usuarios[0]]);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        res.send([false]);
                         _a.label = 4;
                     case 4: return [2 /*return*/];
                 }
