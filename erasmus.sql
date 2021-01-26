@@ -31,17 +31,16 @@ CREATE TABLE IF NOT EXISTS `datosevento` (
   PRIMARY KEY (`id_evento`) USING BTREE,
   KEY `id_organizador` (`id_organizador`),
   CONSTRAINT `datosevento_ibfk_1` FOREIGN KEY (`id_organizador`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla erasmus.datosevento: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla erasmus.datosevento: ~4 rows (aproximadamente)
 DELETE FROM `datosevento`;
 /*!40000 ALTER TABLE `datosevento` DISABLE KEYS */;
 INSERT INTO `datosevento` (`id_evento`, `id_organizador`, `destino`, `descripcion`, `fecha`, `latitud`, `longitud`) VALUES
-	(1, 2, 'Africa', 'Un viaje a la sabana africana', '2020-03-19', 17, 13),
 	(2, 4, 'Venecia', 'Quedada en la plaza de San Marcos', '2020-03-25', 45.4341, 12.33),
-	(3, 3, 'Las Bahamas', 'Un paraíso', '2020-02-29', -77.37, 25.94),
-	(4, 3, 'Tomelloso', 'Quedada en Tomelloso', '2020-04-22', 39.16, -3.011),
-	(5, 12, 'Alcázar de San Juan', 'Reunión en el Juan Bosco', '2020-03-31', 39.3913, -3.2234);
+	(6, 4, 'Paris', 'Visita a la torre Eiffel', '2021-02-26', 48.8032, 2.3511),
+	(7, 53, 'Tokyo', 'Ruta por Tokyo', '2021-03-31', 35.6895, 139.69171),
+	(8, 54, 'China', 'Ruta por la muralla china', '2021-04-15', 35.86166, 104.195397);
 /*!40000 ALTER TABLE `datosevento` ENABLE KEYS */;
 
 -- Volcando estructura para tabla erasmus.datosidiomas
@@ -90,8 +89,6 @@ CREATE TABLE IF NOT EXISTS `eventousuario` (
 -- Volcando datos para la tabla erasmus.eventousuario: ~0 rows (aproximadamente)
 DELETE FROM `eventousuario`;
 /*!40000 ALTER TABLE `eventousuario` DISABLE KEYS */;
-INSERT INTO `eventousuario` (`id_evento`, `id_usuario`) VALUES
-	(2, 6);
 /*!40000 ALTER TABLE `eventousuario` ENABLE KEYS */;
 
 -- Volcando estructura para tabla erasmus.idiomasusuario
@@ -339,30 +336,30 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `email` (`email`),
   KEY `id_pais` (`id_pais`),
   CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_pais`) REFERENCES `ubicaciones` (`id_pais`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla erasmus.usuarios: ~19 rows (aproximadamente)
+-- Volcando datos para la tabla erasmus.usuarios: ~18 rows (aproximadamente)
 DELETE FROM `usuarios`;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `email`, `password`, `last_update`, `last_longitud`, `last_latitud`, `id_pais`, `accessToken`, `foto`, `idioma`) VALUES
-	(2, 'Alvaro', 'Ramirez', 'alvaro@gmail.com', '1234', '0000-00-00', -3.01298, 39.16354, 5, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFsdmFyb0BnbWFpbC5jb20iLCJpYXQiOjE2MTEzNDM3MjIsImV4cCI6MTYxMTQzMDEyMn0._3jwNbGCS_ymClx16mwPiQowZKJOeU0p0wEBKsG8gBs', NULL, NULL),
-	(3, 'Paco', 'Ramirez', 'paco@gmail.com', '1234', '0000-00-00', 10, 62, 5, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFsdmFyb0BnbWFpbC5jb20iLCJpYXQiOjE1ODM0MzMxMzIsImV4cCI6MTU4MzUxOTUzMn0.Vc_wx3OlqWZGmxt4plGjRk0ZryHwqRa9Do1Eo1zoT7o', NULL, NULL),
-	(4, 'Paco', 'Perez', 'paco@correo.com', '$2b$10$PEdTrYifIxlqbOwh0F6hVOm8i/2Kho4Oqf.teOTfjAKca7L9zLxpy', '0000-00-00', 2.35, 46.05, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InBhY29AY29ycmVvLmNvbSIsImlhdCI6MTU4Mzg2ODA3MSwiZXhwIjoxNTgzOTU0NDcxfQ.uhQ8ciULimwGVRqS-ZrukRHLxzcpY004exSASCmyWkM', NULL, NULL),
-	(6, 'Antonio', 'Onion', 'toni@gmail.com', '1234', '0000-00-00', 10.05, 51.05, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRvbmlAZ21haWwuY29tIiwiaWF0IjoxNTgyMjEyMTQ1LCJleHAiOjE1ODIyOTg1NDV9.nZDjMJlnxW0Qn7tdmGsd9Wi8g_rWQnNp7EUGEtD31AY', 'C:\\fakepath\\logo.png', NULL),
-	(7, 'Josico', 'Jose', 'jose@correo.com', '1234', '0000-00-00', -2.69, 54.75, 1, '', 'C:\\fakepath\\22-04-06_1655.jpg', NULL),
-	(8, 'jaime', 'marquina', 'jaimemarquina96@gmail.com', '1234', '0000-00-00', -2, 53, 1, 'ya29.a0Adw1xeVSDhWqPvbhiqJYfRHlnhI0IsZp_tJJk3v_iRNiIg7wnUds0o9kZaFPysAbwYkonBFFizbnaFYmpTISDp354H3AN9dFYpywW3ztuHjS5tX81IHO2OZUNAkXdxbAm8r7UJ3M032Cc8o3r90sZcpF53FXzmupHFyT', 'C:\\fakepath\\22-04-06_1655.jpg', NULL),
-	(11, 'Fran', 'Cuesta', 'fran@correo.com', '1234', '0000-00-00', 10, 56, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZyYW5AY29ycmVvLmNvbSIsImlhdCI6MTU4NDExNDkyOCwiZXhwIjoxNTg0MjAxMzI4fQ.9fasm2tHP1NbMkJZX33hseKRAZ9Rn6pyNKmvQfkNNFE', '', NULL),
-	(12, 'Jesus', 'Gil', 'jesus@correo.com', '1234', '0000-00-00', 40, 55, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Implc3VzQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTUxNDMsImV4cCI6MTU4NDIwMTU0M30.-Kxa1Yykim279nfMo4_rvcA8H0QPIIO8lJhes_qyXHg', '', NULL),
-	(13, 'Mario', 'Lopez', 'mario@correo.com', '1234', '0000-00-00', 25, 46, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1hcmlvQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTUxNjEsImV4cCI6MTU4NDIwMTU2MX0.IACHZGy193KcCpsLCcKpzeMng0NXmv22KDBbTIWOkk0', '', NULL),
-	(14, 'Sara', 'Pastor', 'sara@correo.com', '1234', '0000-00-00', -98, 39.5, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InNhcmFAY29ycmVvLmNvbSIsImlhdCI6MTU4NDExNTYxNiwiZXhwIjoxNTg0MjAyMDE2fQ.6Mb4SO48h3kTpWmXyM91ciCKhZ5lETSD8M6zeUWSsVQ', '', NULL),
-	(15, 'Fer', 'Diaz', 'fer@correo.com', '1234', '0000-00-00', -93.5, 33.76, 3, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZlckBjb3JyZW8uY29tIiwiaWF0IjoxNTg0MTE1NjM3LCJleHAiOjE1ODQyMDIwMzd9.11sGK8w7knCtVFoFKvt6feM9L-XquMfvujOoj8vhYB4', '', NULL),
-	(16, 'Ruben', 'Perez', 'ruben@correo.com', '123', '0000-00-00', -54, -10, 12, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InJ1YmVuQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTU4NjEsImV4cCI6MTU4NDIwMjI2MX0.gyrLDsoEC_0CR0ANEDZMRrsvh3zfvVUA0Gll1QYX4Ps', '', NULL),
-	(17, 'Pablo', 'Marco', 'pablo@correo.com', '123', '0000-00-00', -78.25, -1.25, 11, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InBhYmxvQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTU4OTMsImV4cCI6MTU4NDIwMjI5M30.uVeX6aQ2JjtzCMwwUt5cEjj2wmpYYn7oVliMQf5DsLY', '', NULL),
-	(18, 'Mercedes', 'Mila', 'mercedes@correo.com', '123', '0000-00-00', -73.25, 4, 14, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1lcmNlZGVzQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTU5MTgsImV4cCI6MTU4NDIwMjMxOH0.U3FdQzIWDwn3YLDhV1cP-vLnJJVLyFVr5A-lq6xAYz0', '', NULL),
-	(19, 'Marta', 'Cañego', 'marta@correo.com', '123', '0000-00-00', -75.25, -10, 13, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1hcnRhQGNvcnJlby5jb20iLCJpYXQiOjE1ODQxMTU5MzgsImV4cCI6MTU4NDIwMjMzOH0.lGIif1m_65z2e52ZM5O2XTz_m0Yh6T2BRkIFCCUjT2o', '', NULL),
-	(31, 'prueba', 'cifrado', 'prueba@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOqJ7o4gAnEN60x7HeKNdWIlvKqbYx66m', '0000-00-00', 0, 0, 54, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InBydWViYUBnbWFpbC5jb20iLCJpYXQiOjE2MTEzNDgxMDcsImV4cCI6MTYxMTQzNDUwN30.3fSRselLOfr2-6-VvVjUV0W57aK_lwNdrY8X6D4ncc0', '', NULL),
-	(33, 'prueba2', 'cifrado', 'cifrado@correo.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOqJ7o4gAnEN60x7HeKNdWIlvKqbYx66m', '0000-00-00', 0, 0, 54, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNpZnJhZG9AY29ycmVvLmNvbSIsImlhdCI6MTYxMTM0ODE4NiwiZXhwIjoxNjExNDM0NTg2fQ.27fIll7d_YZOBwfaCZlgVA3HPqBqI42LDSVDJ5oL0rg', '', NULL),
-	(36, 'john', 'Smith', 'juan@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOCPupWdL6EZrsS.bUNsSXHWluhIg4lKW', '0000-00-00', 0, 0, 60, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imp1YW5AZ21haWwuY29tIiwiaWF0IjoxNjExMzQ5MTcxLCJleHAiOjE2MTE0MzU1NzF9.NjmAVEQQMYlXSXv_pgknt9-5b4f89OtgO0B5FHzhePw', '', 'ingles');
+	(4, 'Paco', 'Perez', 'paco@correo.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 2.35, 46.05, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InBhY29AY29ycmVvLmNvbSIsImlhdCI6MTU4Mzg2ODA3MSwiZXhwIjoxNTgzOTU0NDcxfQ.uhQ8ciULimwGVRqS-ZrukRHLxzcpY004exSASCmyWkM', NULL, NULL),
+	(31, 'prueba', 'cifrado', 'prueba@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 21, 12, 54, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InBydWViYUBnbWFpbC5jb20iLCJpYXQiOjE2MTEzNDgxMDcsImV4cCI6MTYxMTQzNDUwN30.3fSRselLOfr2-6-VvVjUV0W57aK_lwNdrY8X6D4ncc0', '', NULL),
+	(33, 'prueba2', 'cifrado', 'cifrado@correo.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 34, 33, 54, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNpZnJhZG9AY29ycmVvLmNvbSIsImlhdCI6MTYxMTM0ODE4NiwiZXhwIjoxNjExNDM0NTg2fQ.27fIll7d_YZOBwfaCZlgVA3HPqBqI42LDSVDJ5oL0rg', '', NULL),
+	(36, 'john', 'Smith', 'juan@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', -3.03104, 39.1479296, 28, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imp1YW5AZ21haWwuY29tIiwiaWF0IjoxNjExNjkzMTc3LCJleHAiOjE2MTE3Nzk1Nzd9.U88qiZ496GtzqQ8c9WKGB0GPgyqK2nGueWB3tTiU3hI', '', 'ingles'),
+	(37, 'Paco', 'pass=1234', '2pac@correo.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 3, 7, 44, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJwYWNAY29ycmVvLmNvbSIsImlhdCI6MTYxMTQyODE0NSwiZXhwIjoxNjExNTE0NTQ1fQ.HbQmFI0nS49nPZnugOHho8MEKARKckpFEMlgUtUmT1M', '', 'Aleman'),
+	(43, 'Samuel', 'López', 'samuel@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 23.75, 54.5, 54, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InNhbXVlbEBnbWFpbC5jb20iLCJpYXQiOjE2MTE2ODY5NjUsImV4cCI6MTYxMTc3MzM2NX0.S2Gp6_L4KkicecYVwiKTqJTKrE7rQkDRvnXEXSzMumw', '', 'Español'),
+	(44, 'Julia', 'Ramos', 'julia@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 38.75844, -4.69531, 60, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Imp1bGlhQGdtYWlsLmNvbSIsImlhdCI6MTYxMTY4NzMwNCwiZXhwIjoxNjExNzczNzA0fQ.uOYqhU5sX53qFSnwWH8uelI6XwRVe-gOhqTAdW-juOc', '', 'ingles'),
+	(45, 'Roberto', 'Gutierrez', 'roberto@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 42.83333, 12.83333, 82, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InJvYmVydG9AZ21haWwuY29tIiwiaWF0IjoxNjExNjg4NDE0LCJleHAiOjE2MTE3NzQ4MTR9.g-X7NHWrnA6zg3gZPezhb3_dIDSiIKBfw1uMfO26JF0', '', 'italiano'),
+	(46, 'Michael', 'Owen', 'michael@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', -98.5, 39.76, 180, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY2hhZWxAZ21haWwuY29tIiwiaWF0IjoxNjExNjg4NTE5LCJleHAiOjE2MTE3NzQ5MTl9.fDo-95Z0h-5-aWtEk3-DXx9NpyQmIMnhhQlVJ90d-fo', '', 'ingles'),
+	(47, 'Dimitri', 'Vegas', 'dimitri@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 49, 32, 178, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRpbWl0cmlAZ21haWwuY29tIiwiaWF0IjoxNjExNjg4NjYyLCJleHAiOjE2MTE3NzUwNjJ9.YuejcuBvcPh7NsiOt9pN95Q54fbSUaWARvQU0RqsEtw', '', 'ucraniano'),
+	(48, 'Congo', 'Mohamed', 'congo@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', -2.5, 23.5, 191, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNvbmdvQGdtYWlsLmNvbSIsImlhdCI6MTYxMTY4ODc1NywiZXhwIjoxNjExNzc1MTU3fQ.abXGK4RoOdC50xd1vjSmomUWLE9m1itVdp7WCzGx2-8', '', 'francés'),
+	(49, 'Rock', 'Johnson', 'rock@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 46, 10, 46, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InJvY2tAZ21haWwuY29tIiwiaWF0IjoxNjExNjg4Nzg2LCJleHAiOjE2MTE3NzUxODZ9.7OwQnDY4NUMtxVqSs3DnQaj71LxWU70QC1aCxNd79I0', '', 'ingles'),
+	(50, 'Mesut', 'Ozil', 'mesut@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 10.5, 51.5, 44, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1lc3V0QGdtYWlsLmNvbSIsImlhdCI6MTYxMTY4OTEzMCwiZXhwIjoxNjExNzc1NTMwfQ.Shjaxoz2A55L4KDFtHdi18r53tzjOmi3MxF6D-E03zQ', '', 'aleman'),
+	(51, 'Mick', 'Jagger', 'mick@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', -113.64258, 60.10867, 29, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY2tAZ21haWwuY29tIiwiaWF0IjoxNjExNjg5MTk3LCJleHAiOjE2MTE3NzU1OTd9.A59jSMtjnPQ17BdYmBpJ98twfnjayRKUfI0HzosPvrg', '', 'ingles'),
+	(52, 'Miroslav', 'Vidic', 'miroslav@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 100, 60, 145, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pcm9zbGF2QGdtYWlsLmNvbSIsImlhdCI6MTYxMTY4OTIzNCwiZXhwIjoxNjExNzc1NjM0fQ.Qc7bQggxF9ocQ1n10YordWnZXuetL7B9rrmChRVwlFo', '', 'ruso'),
+	(53, 'Kotaro', 'Kot', 'kotaro@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 139.75309, 35.68536, 85, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImtvdGFyb0BnbWFpbC5jb20iLCJpYXQiOjE2MTE2ODkyNzgsImV4cCI6MTYxMTc3NTY3OH0.vtZCLc7MAYRzV0PjyE8K21daAdXWrEZYIFsRjk1CWMg', '', 'japones'),
+	(54, 'Wu', 'Lei', 'wu@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 105, 35, 37, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ind1QGdtYWlsLmNvbSIsImlhdCI6MTYxMTY4OTMwMywiZXhwIjoxNjExNzc1NzAzfQ.WyH3DwY4B8gas8nZBh1Uxs9fXS_uKnVKnP6rKxnnJjA', '', 'chino'),
+	(57, 'Alvaro', 'Ramirez', 'alvaro@ramirez.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', -3.03104, 39.1479296, 135, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFsdmFyb0ByYW1pcmV6LmNvbSIsImlhdCI6MTYxMTY5MzI2NiwiZXhwIjoxNjExNzc5NjY2fQ.4YZhg_IT6B457F3h4p3qI-3KB86P-I2Eo7QQAeSWc14', '', 'frances');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
