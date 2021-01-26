@@ -45,7 +45,7 @@ class UsuarioController {
     
     public async updateUbi(req: Request, res: Response) {
         console.log(req.body);
-        const latitud = await pool.query('UPDATE usuarios SET last_longitud = ?, last_latitud = ? WHERE id=?', [req.body.last_longitud, req.body.last_longitud, req.body.email]);
+        const latitud = await pool.query('UPDATE usuarios SET last_longitud = ?, last_latitud = ? WHERE id=?', [req.body.last_longitud, req.body.last_latitud, req.body.email]);
         console.log('latitud:', latitud);
         if (latitud.affectedRows == 0) {
             res.send(false);

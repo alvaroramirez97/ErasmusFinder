@@ -110,7 +110,7 @@ var UsuarioController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         console.log(req.body);
-                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET last_longitud = ?, last_latitud = ? WHERE id=?', [req.body.last_longitud, req.body.last_longitud, req.body.email])];
+                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET last_longitud = ?, last_latitud = ? WHERE id=?', [req.body.last_longitud, req.body.last_latitud, req.body.email])];
                     case 1:
                         latitud = _a.sent();
                         console.log('latitud:', latitud);

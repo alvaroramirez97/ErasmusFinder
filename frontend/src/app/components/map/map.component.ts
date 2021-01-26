@@ -47,22 +47,24 @@ export class MapComponent implements OnInit {
     );
 
     this.cargarMapa(this.datosuser);
-    this.updateDatos(this.datosuser);
+    this.updateDatos(this.datosuser, this);
   }
 
-  updateDatos(datos: any) { // Actualizar datosuser
+  updateDatos(datos: any, pointto: any) { // Actualizar datosuser
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(function (position) {
-        console.log(position);
+        console.log('Position:', position);
         datos.latitud = position.coords.latitude;
         datos.longitud = position.coords.longitude;
+        if (!!localStorage.getItem('id')) {
+          pointto.updateBD(position.coords.latitude, position.coords.longitude);
+        }
       });
     }
   }
 
 
   autocompletar(lista: Array<any>, coor: any) {// AUTOCOMPLETAR CAMPOS DE BUSQUEDA
-    console.log('FUNCION-> autocompletar()');
 
     $('#pais_buscado').autocomplete({
       source: lista,
@@ -122,10 +124,9 @@ export class MapComponent implements OnInit {
         console.log(err);
       });
 
-
+  
     this.servicioUsuarios.getUsuarios().subscribe(
       res => {
-        console.log(res);
         res.forEach(usu => {
 
           if (usu.id != localStorage.getItem('id') && usu.last_latitud != 0 && usu.last_longitud != 0) {
@@ -147,7 +148,6 @@ export class MapComponent implements OnInit {
   }
 
   cargarUbi(datos: any) {     // CARGAR MI UBICACION
-    console.log('cargando Ubi');
     datos.pointer.clearLayers();
     this.mapa.locate({ setView: true, maxZoom: 16 })
       .on('locationfound', function (e) {
@@ -169,7 +169,7 @@ export class MapComponent implements OnInit {
         });
         datos.pointer.addLayer(marcador);
         datos.pointer.addLayer(radio);
-        console.log('datos', datos);
+        console.log('Datos:', datos);
       })
       .on('locationerror', function (e) {
         console.log(e);
@@ -178,8 +178,30 @@ export class MapComponent implements OnInit {
 
   }
 
+  updateBD(lat : any, long : any) {
+    const datos_ubi = {
+      email: localStorage.getItem('id'),
+      last_longitud: long,
+      last_latitud: lat,
+    }
+    if (datos_ubi.last_latitud !=0 && datos_ubi.last_longitud !=0 ) {
+      this.servicioUsuarios.updateUbi(datos_ubi).subscribe(
+        res =>{
+          console.log('ubicación actualizada:', res, datos_ubi);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+      
+    }else{
+      console.log('hay 0')
+    }
+
+  }
+
   miUbi() { // BOTON MI UBICACION
-    this.updateDatos(this.datosuser);
+    this.updateDatos(this.datosuser, this);
     console.log('MI UBI', this.datosuser.latitud, this.datosuser.longitud);
     this.mapa.flyTo([this.datosuser.latitud, this.datosuser.longitud], 15);
   }

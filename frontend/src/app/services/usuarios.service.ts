@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { MimodeloRegistro } from '../modelos/mimodeloRegistro';
 import { Mimodelo } from '../modelos/mimodelo';
 import { MimodeloToken } from '../modelos/mimodeloToken';
+import { modeloUbi } from '../modelos/mimodeloUbi';
 
 
 @Injectable({
@@ -21,9 +22,12 @@ export class UsuariosService {
     return this.http.delete('http://localhost:3000/usuarios/' + id);
   }
 
-
   updateToken(usuario: Mimodelo): Observable<any> {
     return this.http.put('http://localhost:3000/usuarios/token', usuario);
+  }
+
+  updateUbi(datos: modeloUbi): Observable<any> {
+    return this.http.put('http://localhost:3000/usuarios/ubi', datos);
   }
 
   getLogin(usuario: Mimodelo): Observable<any> {
