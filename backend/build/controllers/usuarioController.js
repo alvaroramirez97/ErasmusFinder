@@ -103,6 +103,28 @@ var UsuarioController = /** @class */ (function () {
             });
         });
     };
+    UsuarioController.prototype.updateUbi = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var latitud;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log(req.body);
+                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET last_longitud = ?, last_latitud = ? WHERE id=?', [req.body.last_longitud, req.body.last_latitud, req.body.email])];
+                    case 1:
+                        latitud = _a.sent();
+                        console.log('latitud:', latitud);
+                        if (latitud.affectedRows == 0) {
+                            res.send(false);
+                        }
+                        else {
+                            res.send(true);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     UsuarioController.prototype.read = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var usuarios;

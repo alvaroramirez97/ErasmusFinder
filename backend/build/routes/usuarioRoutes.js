@@ -12,6 +12,7 @@ var UsuarioRoutes = /** @class */ (function () {
         this.router.get('/:id', usuarioController_1.controladorUsuario.readone);
         this.router.post('/crear', usuarioController_1.controladorUsuario.create);
         this.router.put('/token', usuarioController_1.controladorUsuario.updateToken);
+        this.router.put('/ubi', usuarioController_1.controladorUsuario.updateUbi);
         this.router.put('/:id', usuarioController_1.controladorUsuario.update);
         this.router.delete('/:id', usuarioController_1.controladorUsuario.delete);
         this.router.post('/login', usuarioController_1.controladorUsuario.readLogin);
