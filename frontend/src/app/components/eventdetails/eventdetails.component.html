@@ -1,7 +1,8 @@
 <li *ngFor="let item of evento">
-    <p>Destino: {{ item.destino }}</p>
-    <p>{{ item.descripcion }}</p>
-    <p>Fecha: {{ item.fecha }}</p>
+    <h1 class="detalleEventoH1">Destino: {{ item.destino }}</h1>
+    <h4>{{ item.descripcion }}</h4>
+    <br>
+    <p class="cursiva">Fecha: {{ item.fecha }}</p>
 </li>
 
 <div id="mapamundi">
