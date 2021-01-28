@@ -12,6 +12,7 @@ var EventosRoutes = /** @class */ (function () {
         this.router.get('/:id', eventsController_1.controladorEventos.readOne);
         this.router.get('/delete/:id', eventsController_1.controladorEventos.delete);
         this.router.get('/buscar/:destino', eventsController_1.controladorEventos.readEventosFiltrado);
+        this.router.post('/crear', eventsController_1.controladorEventos.create);
     };
     return EventosRoutes;
 }());

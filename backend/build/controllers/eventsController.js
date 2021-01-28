@@ -46,6 +46,26 @@ var EventsController = /** @class */ (function () {
     }
     EventsController.prototype.index = function (req, res) {
     };
+    EventsController.prototype.create = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var evento;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, database_1.default.query('INSERT INTO datosevento SET ?', [req.body])];
+                    case 1:
+                        evento = _a.sent();
+                        console.log(evento);
+                        if (evento.affectedRows == 0) {
+                            res.send([false]);
+                        }
+                        else {
+                            res.send([evento.insertId]);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     EventsController.prototype.readEventos = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var eventos;

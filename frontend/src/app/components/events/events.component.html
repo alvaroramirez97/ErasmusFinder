@@ -1,5 +1,13 @@
 <div>
     <h1>EVENTOS</h1>
+
+    
+    <ng-container *ngIf="servicioUser.logIn()">  
+        <!-- Si esta logueado aqui formulario pa crear evento -->
+
+
+    </ng-container>
+
     Busqueda: <br><input class="input_busqueda" type="text" name="destino" id="destino_buscado" (keyup)="buscar()" /><br><br>
     <div class="listaUsers" *ngFor="let item of lista_eventos">
         <h2 [id] = "item.id">{{item.id}}</h2>

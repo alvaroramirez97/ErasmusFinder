@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { modeloEvento } from '../modelos/mimodeloEvento';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { Observable } from 'rxjs';
 export class EventosService {
 
   public id: any;
+  public modeloEventos: modeloEvento;
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +23,10 @@ export class EventosService {
 
   getEventosFiltrado(destino: string): Observable<any> {
     return this.http.get('http://localhost:3000/eventos/buscar/' + destino);
+  }
+
+  crearUsuario(evento: modeloEvento): Observable<any> {
+    return this.http.post('http://localhost:3000/eventos/crear', evento);
   }
 
 }
