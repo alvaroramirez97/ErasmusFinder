@@ -4,17 +4,24 @@
     
     <ng-container *ngIf="servicioUser.logIn()">  
         <!-- Si esta logueado aqui formulario pa crear evento -->
-
-
+        <form [formGroup]="formEventos" (submit)="submit()">
+            <div class="form-group">
+                <p class="titulo">Crear evento: </p>
+                <input class="form-control" formControlName="destino" type="text" placeholder="Lugar del evento..."><br>
+                <input class="form-control" type="text" formControlName="descripcion" placeholder="Descripción del evento..."><br>
+                <input class="form-control" formControlName="fecha" type="date"><br>
+                <button type="submit" class="btn btn-info btn-block">Crear Evento</button>
+            </div>
+        </form>
     </ng-container>
 
-    Busqueda: <br><input class="input_busqueda" type="text" name="destino" id="destino_buscado" (keyup)="buscar()" /><br><br>
+    <br><br><p class="titulo">Busqueda: </p><input class="input_busqueda" type="text" name="destino" id="destino_buscado" (keyup)="buscar()" /><br><br>
     <div class="listaUsers" *ngFor="let item of lista_eventos">
         <h2 [id] = "item.id">{{item.id}}</h2>
         <h2>{{ item.destino }}</h2>
         <br>
         <h4>{{ item.descripcion }}</h4>
         <p>Fecha: {{ item.fecha }}</p>
-        <a href="/events/{{item.id_evento}}" (click)="setId(item.id_evento)">Ver mas</a>
+        <a href="/events/{{item.id_evento}}" class="btn btn-success" (click)="setId(item.id_evento)">Ver mas</a>
     </div>
 </div>

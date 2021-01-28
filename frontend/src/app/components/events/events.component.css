@@ -11,3 +11,22 @@ h1{
 .input_busqueda{
     width: 45%;
 }
+
+.inputLugarEvento{
+    width: 175px;
+    margin-right: 20px;
+}
+
+.inputDescEvento{
+    width: 350px;
+    margin-right: 20px;
+}
+
+.inputDate{
+    margin-right: 20px;
+}
+
+.titulo{
+    font-weight: bold;
+    font-size: 25px;
+}

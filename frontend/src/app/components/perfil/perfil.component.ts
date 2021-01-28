@@ -42,8 +42,9 @@ export class PerfilComponent implements OnInit {
     );
   }
 
-  borrarUser() {
+  borrarUser(paco) {
     const idUser = localStorage.getItem('id');
+    console.log(paco)
     this.serviceuser.deleteUsuario(idUser).subscribe(
       res => {
         console.log(res);

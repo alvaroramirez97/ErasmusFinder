@@ -7,6 +7,7 @@ class EventsController{
     }
     
     public async create(req: Request, res: Response) {
+        console.log(req.body);
         const evento = await pool.query('INSERT INTO datosevento SET ?', [req.body]);
         console.log(evento);
         if (evento.affectedRows == 0) {

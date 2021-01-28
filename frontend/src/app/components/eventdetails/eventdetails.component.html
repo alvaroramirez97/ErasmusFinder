@@ -1,10 +1,21 @@
-<li *ngFor="let item of evento">
-    <h1 class="detalleEventoH1">Destino: {{ item.destino }}</h1>
-    <h4>{{ item.descripcion }}</h4>
+<li *ngFor="let item of evento" class="container col-xs-1 center-block">
+    
+<div class="jumbotron jumbotron-fluid brd">
+    <div class="container">
+        <h1>Destino: {{ item.destino }}</h1>          
+        <div class="container">    
+            <h4>{{ item.descripcion }}</h4>
+        </div>
     <br>
     <p class="cursiva">Fecha: {{ item.fecha }}</p>
+    
+    <ng-container *ngIf="servicioUser.logIn()">  
+        <div id="borrarEvento">
+            <a href="/events" class="btn btn-danger" (click)="borrarEvento()">Borrar evento</a>
+        </div>
+    </ng-container>
+    </div>
+  </div>    
+    
 </li>
 
-<div id="mapamundi">
-
-</div>

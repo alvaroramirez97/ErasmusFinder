@@ -25,8 +25,12 @@ export class EventosService {
     return this.http.get('http://localhost:3000/eventos/buscar/' + destino);
   }
 
-  crearUsuario(evento: modeloEvento): Observable<any> {
+  crearEvento(evento: modeloEvento): Observable<any> {
     return this.http.post('http://localhost:3000/eventos/crear', evento);
+  }
+
+  deleteEvento(id: string): Observable<any> {
+    return this.http.get('http://localhost:3000/eventos/delete/' + id);
   }
 
 }

@@ -51,7 +51,9 @@ var EventsController = /** @class */ (function () {
             var evento;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query('INSERT INTO datosevento SET ?', [req.body])];
+                    case 0:
+                        console.log(req.body);
+                        return [4 /*yield*/, database_1.default.query('INSERT INTO datosevento SET ?', [req.body])];
                     case 1:
                         evento = _a.sent();
                         console.log(evento);

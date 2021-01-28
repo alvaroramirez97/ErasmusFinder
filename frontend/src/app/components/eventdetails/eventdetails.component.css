@@ -10,3 +10,7 @@ li{
 .cursiva{
     font-style: italic;
 }
+
+.brd{
+    border-radius: 20px;
+}

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EventosService } from 'src/app/services/eventos.service';
 import { Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var $: any;
 
@@ -19,7 +19,15 @@ export class EventsComponent implements OnInit {
 
   public id: any;
 
-  constructor(public servicioEventos: EventosService, private router: Router, private servicioUser: UsuariosService) { }
+  constructor(private formBuilder: FormBuilder, public servicioEventos: EventosService ,private router: Router, private servicioUser: UsuariosService) 
+  { 
+    this.formEventos = formBuilder.group({
+      id_organizador: localStorage.getItem('id'),
+      destino: [''],
+      descripcion: [''],
+      fecha: ['']
+    });
+  }
 
   ngOnInit() {
     this.listarTodos();
@@ -27,13 +35,15 @@ export class EventsComponent implements OnInit {
   
   submit() {
     console.log(this.formEventos);
-    this.servicioEventos.crearUsuario(this.formEventos.value).subscribe(
+    
+    this.servicioEventos.crearEvento(this.formEventos.value).subscribe(
       res => {
         if (!res[0]) {// Si devuelve false
 
           this.router.navigate(['/events']);
         } else {  // Si devuelve algo bien
-          console.log(res);
+          console.log(res[0]);
+          this.router.navigate(['/events/'+res[0]]);
         }
       },
       err => {
@@ -42,6 +52,7 @@ export class EventsComponent implements OnInit {
       }
     );
   }
+
 
   listarTodos() {
     console.log('toodo');
@@ -77,8 +88,16 @@ export class EventsComponent implements OnInit {
 
   }
 
+  get destino() {
+    return this.formEventos.get('destino');
+  }
 
+  get descripcion() {
+    return this.formEventos.get('descripcion');
+  }
 
-
-
+  get fecha()
+  {
+    return this.formEventos.get('fecha');
+  }
 }
