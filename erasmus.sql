@@ -26,21 +26,22 @@ CREATE TABLE IF NOT EXISTS `datosevento` (
   `destino` varchar(200) NOT NULL,
   `descripcion` varchar(500) NOT NULL,
   `fecha` date NOT NULL,
-  `latitud` double NOT NULL,
-  `longitud` double NOT NULL,
+  `latitud` double NOT NULL DEFAULT '0',
+  `longitud` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_evento`) USING BTREE,
   KEY `id_organizador` (`id_organizador`),
   CONSTRAINT `datosevento_ibfk_1` FOREIGN KEY (`id_organizador`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla erasmus.datosevento: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla erasmus.datosevento: ~5 rows (aproximadamente)
 DELETE FROM `datosevento`;
 /*!40000 ALTER TABLE `datosevento` DISABLE KEYS */;
 INSERT INTO `datosevento` (`id_evento`, `id_organizador`, `destino`, `descripcion`, `fecha`, `latitud`, `longitud`) VALUES
 	(2, 4, 'Venecia', 'Quedada en la plaza de San Marcos', '2020-03-25', 45.4341, 12.33),
 	(6, 4, 'Paris', 'Visita a la torre Eiffel', '2021-02-26', 48.8032, 2.3511),
 	(7, 53, 'Tokyo', 'Ruta por Tokyo', '2021-03-31', 35.6895, 139.69171),
-	(8, 54, 'China', 'Ruta por la muralla china', '2021-04-15', 35.86166, 104.195397);
+	(8, 54, 'China', 'Ruta por la muralla china', '2021-04-15', 35.86166, 104.195397),
+	(18, 57, 'Rusia', 'nieve', '2021-01-14', 0, 0);
 /*!40000 ALTER TABLE `datosevento` ENABLE KEYS */;
 
 -- Volcando estructura para tabla erasmus.datosidiomas
@@ -359,7 +360,7 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `email`, `password`, `last_
 	(52, 'Miroslav', 'Vidic', 'miroslav@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 100, 60, 145, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pcm9zbGF2QGdtYWlsLmNvbSIsImlhdCI6MTYxMTY4OTIzNCwiZXhwIjoxNjExNzc1NjM0fQ.Qc7bQggxF9ocQ1n10YordWnZXuetL7B9rrmChRVwlFo', '', 'ruso'),
 	(53, 'Kotaro', 'Kot', 'kotaro@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 139.75309, 35.68536, 85, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImtvdGFyb0BnbWFpbC5jb20iLCJpYXQiOjE2MTE2ODkyNzgsImV4cCI6MTYxMTc3NTY3OH0.vtZCLc7MAYRzV0PjyE8K21daAdXWrEZYIFsRjk1CWMg', '', 'japones'),
 	(54, 'Wu', 'Lei', 'wu@gmail.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', 105, 35, 37, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ind1QGdtYWlsLmNvbSIsImlhdCI6MTYxMTY4OTMwMywiZXhwIjoxNjExNzc1NzAzfQ.WyH3DwY4B8gas8nZBh1Uxs9fXS_uKnVKnP6rKxnnJjA', '', 'chino'),
-	(57, 'Alvaro', 'Ramirez', 'alvaro@ramirez.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', -3.03104, 39.1479296, 135, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFsdmFyb0ByYW1pcmV6LmNvbSIsImlhdCI6MTYxMTY5MzI2NiwiZXhwIjoxNjExNzc5NjY2fQ.4YZhg_IT6B457F3h4p3qI-3KB86P-I2Eo7QQAeSWc14', '', 'frances');
+	(57, 'Alvaro', 'Ramirez', 'alvaro@ramirez.com', '$2b$10$tDku1TnjNl/3QjoKKXKcxOXYoALqNkD81odiJaKJK4h7il7q1VbgS', '0000-00-00', -3.03104, 39.1479296, 135, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFsdmFyb0ByYW1pcmV6LmNvbSIsImlhdCI6MTYxMTg2MTk1MCwiZXhwIjoxNjExOTQ4MzUwfQ.BJe78N0a4OuahapCMY0QgGsEdQyDVJbR9QjNSvjzJEU', '', 'frances');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
