@@ -14,3 +14,11 @@ li{
 .brd{
     border-radius: 20px;
 }
+
+.tuyo h3{
+    padding: 5px;
+    float: right;
+    background-color: grey;
+    font-size: 17px;
+    border-radius: 7px;
+}

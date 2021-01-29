@@ -10,9 +10,14 @@
     <p class="cursiva">Fecha: {{ item.fecha }}</p>
     
     <ng-container *ngIf="servicioUser.logIn()">  
-        <div id="borrarEvento">
-            <a href="/events" class="btn btn-danger" (click)="borrarEvento()">Borrar evento</a>
-        </div>
+        <ng-container *ngIf="estuyo(item.id_organizador)" >  
+            <div class="tuyo">
+                <h3>Creado por ti</h3>
+            </div>
+            <div id="borrarEvento">
+                <a href="/events" class="btn btn-danger" (click)="borrarEvento()">Borrar evento</a>
+            </div>
+        </ng-container>
     </ng-container>
     </div>
   </div>    
