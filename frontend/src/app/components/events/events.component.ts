@@ -25,7 +25,9 @@ export class EventsComponent implements OnInit {
       id_organizador: localStorage.getItem('id'),
       destino: [''],
       descripcion: [''],
-      fecha: ['']
+      fecha: [''],
+      latitud: [''],
+      longitud: ['']
     });
   }
 
@@ -55,8 +57,6 @@ export class EventsComponent implements OnInit {
 
 
   listarTodos() {
-    console.log('toodo');
-
     this.servicioEventos.getEventos().subscribe(
       res => {
         console.log(res);
