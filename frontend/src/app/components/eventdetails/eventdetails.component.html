@@ -10,7 +10,7 @@
             <h5>{{ item.participantes }} usuarios se han apuntado a este evento</h5>
         </div>
         <br>
-        <p class="cursiva">Fecha: {{ item.fecha }}</p>
+        <p class="cursiva">Fecha: {{ formatDate(item.fecha) }}</p>
     
         <ng-container *ngIf="servicioUsuarios.logIn()">  
             <ng-container *ngIf="estuyo(item.id_organizador)" >  
@@ -19,12 +19,37 @@
                 </div>
                 <div id="borrarEvento">
                     <a href="/events" class="btn btn-danger" (click)="borrarEvento()">Borrar evento</a>&nbsp;
-                    <a href="" class="btn btn-primary" (click)="editarEvento()">Editar evento</a>
+                    <a class="btn btn-primary" (click)="abrirEditor()">Editar evento</a>
                 </div>
             </ng-container>
         </ng-container>
     </div>
 </div>    
+
+  <ng-container *ngIf="servicioUsuarios.logIn()">  
+    <ng-container *ngIf="estuyo(item.id_organizador)" >  
+                
+        <div id="editorEvento" class="jumbotron jumbotron-fluid brd oculto">
+            <div class="container">
+                <form [formGroup]="formEventos" (submit)="submit()">
+                    <div class="form-group">
+                        <p class="titulo">Editar tu evento: </p>
+                        <input class="form-control oculto" type="number" formControlName="id" value="{{item.id_evento}}">
+                        <input class="form-control" formControlName="destino" type="text" value="{{item.destino}}" placeholder="Lugar del evento..."><br>
+                        <input class="form-control" type="textarea" formControlName="descripcion" value="{{item.descripcion}}" placeholder="Descripción del evento..."><br>
+                        <input class="form-control" formControlName="fecha" value="formatFecha(item.fecha)" type="date"><br>
+                        Ubicación aproximada:<br>
+                        <input class="form-control" type="number" formControlName="latitud" value="{{item.latitud}}" placeholder="Latitud..."><br>
+                        <input class="form-control" type="number" formControlName="longitud" value="{{item.longitud}}" placeholder="longitud..."><br>
+                    </div>
+                    <button type="submit" class="btn btn-info btn-block">Guardar cambios</button>&nbsp;
+                    <a class="btn btn-warning btn-block" (click)="submit()">Cerrar editor</a>
+                </form>
+            </div>
+        </div>    
+
+    </ng-container>
+</ng-container>
 
     <h3>Usuarios inscritos a este evento:</h3>
     <div class="container jumbotron jumbotron-fluid brd">
@@ -44,7 +69,7 @@
     
 </li>
     
-<div id="mapaevento" class="brd">
+<div id="mapaevento" class="jumbotron jumbotron-fluid brd">
     
 </div>
 

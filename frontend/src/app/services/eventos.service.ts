@@ -30,6 +30,10 @@ export class EventosService {
     return this.http.post('http://localhost:3000/eventos/crear', evento);
   }
 
+  editarEvento(evento: modeloEvento): Observable<any> {
+    return this.http.post('http://localhost:3000/eventos/editar', evento);
+  }
+
   deleteEvento(id: string): Observable<any> {
     return this.http.get('http://localhost:3000/eventos/delete/' + id);
   }

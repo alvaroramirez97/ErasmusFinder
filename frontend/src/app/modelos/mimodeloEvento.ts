@@ -1,5 +1,5 @@
 export interface modeloEvento {
-    id?: number;
+    id_evento?: number;
     id_organizador?: number;
     destino?: string;
     descripcion?: string;

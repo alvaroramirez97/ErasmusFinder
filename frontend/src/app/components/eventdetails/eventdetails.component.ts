@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MapService } from 'src/app/services/map.service';
 import { Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var L: any;
 
@@ -17,8 +18,7 @@ export class EventdetailsComponent implements OnInit {
   public id: any;
   public evento: any;
   public usuarios: any;
-
-  
+  public formEventos: FormGroup;
   public marcadores = L.layerGroup();
   public mapa: any;
   public datosevento = {
@@ -27,7 +27,17 @@ export class EventdetailsComponent implements OnInit {
     pointer: L.layerGroup()
   };
 
-  constructor(public servicioEventos: EventosService, private router: Router,private rutaActiva: ActivatedRoute, private servicioUsuarios: UsuariosService) { }
+  constructor(private formBuilder: FormBuilder, public servicioEventos: EventosService, private router: Router,private rutaActiva: ActivatedRoute, private servicioUsuarios: UsuariosService) {
+    this.formEventos = formBuilder.group({
+      id: ['', Validators.required],
+      id_organizador: localStorage.getItem('id'),
+      destino: ['', Validators.required],
+      descripcion: ['',  Validators.required],
+      fecha: ['',  Validators.required],
+      latitud: [''],
+      longitud: ['']
+    });
+  }
 
 
   ngOnInit() {
@@ -38,7 +48,7 @@ export class EventdetailsComponent implements OnInit {
     this.servicioEventos.verEvento(this.id).subscribe(
       res => {
         console.log(res[0]);
-        res[0].fecha = this.formatDate(res[0].fecha);
+        // res[0].fecha = this.formatDate(res[0].fecha);
         this.evento = res;
         this.usuarios = res[0].lista_users;
         const ubi = {
@@ -88,6 +98,22 @@ export class EventdetailsComponent implements OnInit {
     return [year, month, day].join('-');
   }
 
+  
+  formatFecha(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    // return [day, month, year].join('/');
+    return d;
+  }
+
   estuyo(dato) {
     var user_id = localStorage.getItem('id');
     if(dato == user_id){
@@ -122,6 +148,63 @@ export class EventdetailsComponent implements OnInit {
         }
       )
     }
+  }
+  
+  submit() {
+    var formu = this.formEventos.value;
+    const ev = this.evento[0];
+    const objEvento={
+      id_evento: ev.id_evento,
+      id_organizador: parseInt(localStorage.getItem('id')),
+      destino: ev.destino,
+      descripcion: ev.descripcion,
+      fecha: this.formatDate(ev.fecha),
+      latitud: ev.latitud,
+      longitud: ev.longitud
+    }
+    if(formu.destino != ev.destino && formu.destino!=""){
+      console.log('destino cambiado');
+      objEvento.destino = formu.destino;
+    }
+    if(formu.descripcion != ev.descripcion && formu.descripcion!=""){
+      console.log('descripcion cambiada');
+      objEvento.descripcion = formu.descripcion;
+    }
+    if(formu.fecha != ev.fecha && formu.fecha!=''){
+      console.log('fecha cambiada');
+      objEvento.fecha = this.formatDate(formu.fecha);
+    }
+    if(formu.latitud != ev.latitud && formu.latitud!=''){
+      console.log('latitud cambiada');
+      objEvento.latitud = formu.latitud;
+    }
+    if(formu.longitud != ev.longitud && formu.longitud!=''){
+      console.log('longitud cambiada');
+      objEvento.longitud = formu.longitud;
+    }
+    
+    this.servicioEventos.editarEvento(objEvento).subscribe(
+      res => {
+        if (!res[0]) {// Si devuelve false
+    console.log('editao');
+
+        } else {  // Si devuelve algo bien
+          console.log(res[0]);
+        }
+      },
+      err => {
+        console.log(err);
+        this.router.navigate(['/events']);
+      }
+    );
+  }
+
+  abrirEditor(){
+    $('#editorEvento').removeClass('oculto');
+  }
+
+  cerrarEditor(){
+    $('#editorEvento').addClass('oculto');
   }
 
 
