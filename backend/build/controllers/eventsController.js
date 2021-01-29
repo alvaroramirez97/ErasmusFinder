@@ -68,6 +68,28 @@ var EventsController = /** @class */ (function () {
             });
         });
     };
+    EventsController.prototype.edit = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var evento;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log(req.body);
+                        return [4 /*yield*/, database_1.default.query('UPDATE datosevento SET destino=? , descripcion=? , fecha=? , latitud=? , longitud=? WHERE id_evento= ?', [req.body.destino, req.body.descripcion, req.body.fecha, req.body.latitud, req.body.longitud, req.body.id])];
+                    case 1:
+                        evento = _a.sent();
+                        console.log(evento);
+                        if (evento.affectedRows == 0) {
+                            res.send([false]);
+                        }
+                        else {
+                            res.send([evento.insertId]);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     EventsController.prototype.readEventos = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var eventos;

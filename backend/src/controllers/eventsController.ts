@@ -16,6 +16,17 @@ class EventsController{
             res.send([evento.insertId]);
         }
     }
+    
+    public async edit(req: Request, res: Response) {
+        console.log(req.body);
+        const evento = await pool.query('UPDATE datosevento SET destino=? , descripcion=? , fecha=? , latitud=? , longitud=? WHERE id_evento= ?', [req.body.destino, req.body.descripcion, req.body.fecha, req.body.latitud, req.body.longitud, req.body.id]);
+        console.log(evento);
+        if (evento.affectedRows == 0) {
+            res.send([false]);
+        } else {
+            res.send([evento.insertId]);
+        }
+    }
 
     public async readEventos(req:Request, res:Response){
         const eventos = await pool.query('SELECT * FROM datosevento', [req.body]);
