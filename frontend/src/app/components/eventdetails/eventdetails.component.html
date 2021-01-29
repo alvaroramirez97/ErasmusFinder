@@ -9,21 +9,22 @@
         <div class="container">    
             <h5>{{ item.participantes }} usuarios se han apuntado a este evento</h5>
         </div>
-    <br>
-    <p class="cursiva">Fecha: {{ item.fecha }}</p>
+        <br>
+        <p class="cursiva">Fecha: {{ item.fecha }}</p>
     
-    <ng-container *ngIf="servicioUser.logIn()">  
-        <ng-container *ngIf="estuyo(item.id_organizador)" >  
-            <div class="tuyo">
-                <h3>Creado por ti</h3>
-            </div>
-            <div id="borrarEvento">
-                <a href="/events" class="btn btn-danger" (click)="borrarEvento()">Borrar evento</a>
-            </div>
+        <ng-container *ngIf="servicioUsuarios.logIn()">  
+            <ng-container *ngIf="estuyo(item.id_organizador)" >  
+                <div class="tuyo">
+                    <h3>Creado por ti</h3>
+                </div>
+                <div id="borrarEvento">
+                    <a href="/events" class="btn btn-danger" (click)="borrarEvento()">Borrar evento</a>&nbsp;
+                    <a href="" class="btn btn-primary" (click)="editarEvento()">Editar evento</a>
+                </div>
+            </ng-container>
         </ng-container>
-    </ng-container>
     </div>
-  </div>    
+</div>    
 
     <h3>Usuarios inscritos a este evento:</h3>
     <div class="container jumbotron jumbotron-fluid brd">
@@ -34,14 +35,16 @@
         </ul>
 
             
-        <ng-container *ngIf="servicioUser.logIn()">  
+        <ng-container *ngIf="servicioUsuarios.logIn()">  
                 <div class="container">
                     <a class="btn btn-success" (click)="apuntarse()">Inscribirse</a>
                 </div>
         </ng-container>
     </div>
-
-    
     
 </li>
+    
+<div id="mapaevento" class="brd">
+    
+</div>
 
