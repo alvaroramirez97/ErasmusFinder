@@ -85,4 +85,32 @@ export class EventdetailsComponent implements OnInit {
     }
   }
 
+  apuntarse() {
+    var user_id = localStorage.getItem('id');
+    var ids = [];
+    this.usuarios.forEach(usu => {
+      ids.push(usu.id)
+    });
+    if(ids.includes(parseInt(user_id))){
+      alert('Ya estás inscrito en este evento');
+    }else{
+      const inscripcion = {
+        id_evento: this.id,
+        id_usuario: parseInt(user_id)
+      }
+      console.log('apuntando');
+
+      this.servicioEventos.apuntarse(inscripcion).subscribe(
+        res => {
+          console.log(res);
+          location.reload();
+        },
+        err => {
+          console.log(err);
+        }
+      )
+    }
+
+  }
+
 }

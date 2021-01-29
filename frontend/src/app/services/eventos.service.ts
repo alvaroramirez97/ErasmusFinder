@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { modeloEvento } from '../modelos/mimodeloEvento';
+import { modeloInscripcion } from '../modelos/mimodeloInscripcion';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,10 @@ export class EventosService {
 
   deleteEvento(id: string): Observable<any> {
     return this.http.get('http://localhost:3000/eventos/delete/' + id);
+  }
+
+  apuntarse(inscripcion: modeloInscripcion) {
+    return this.http.post('http://localhost:3000/eventos/apuntarse', inscripcion);
   }
 
 }
