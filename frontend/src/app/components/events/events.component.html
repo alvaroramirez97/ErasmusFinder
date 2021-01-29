@@ -19,6 +19,12 @@
     <div class="listaUsers" *ngFor="let item of lista_eventos">
         <h2 [id] = "item.id">{{item.id}}</h2>
         <h2>{{ item.destino }}</h2>
+        
+        <ng-container *ngIf="estuyo(item.id_organizador)" >  
+            <div class="tuyo">
+                <h3>Creado por ti</h3>
+            </div>
+        </ng-container>
         <br>
         <h4>{{ item.descripcion }}</h4>
         <p>Fecha: {{ item.fecha }}</p>

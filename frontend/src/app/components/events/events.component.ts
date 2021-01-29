@@ -88,6 +88,15 @@ export class EventsComponent implements OnInit {
 
   }
 
+  estuyo(dato) {
+    var user_id = localStorage.getItem('id');
+    if(dato == user_id){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   get destino() {
     return this.formEventos.get('destino');
   }
