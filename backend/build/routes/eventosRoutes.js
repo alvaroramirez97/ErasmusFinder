@@ -13,6 +13,7 @@ var EventosRoutes = /** @class */ (function () {
         this.router.get('/delete/:id', eventsController_1.controladorEventos.delete);
         this.router.get('/buscar/:destino', eventsController_1.controladorEventos.readEventosFiltrado);
         this.router.post('/crear', eventsController_1.controladorEventos.create);
+        this.router.post('/apuntarse', eventsController_1.controladorEventos.apuntarse);
     };
     return EventosRoutes;
 }());

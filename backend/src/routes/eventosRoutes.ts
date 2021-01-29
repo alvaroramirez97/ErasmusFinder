@@ -14,6 +14,7 @@ class EventosRoutes{
         this.router.get('/delete/:id', controladorEventos.delete);
         this.router.get('/buscar/:destino', controladorEventos.readEventosFiltrado);
         this.router.post('/crear', controladorEventos.create);
+        this.router.post('/apuntarse', controladorEventos.apuntarse);
     }
 
 }

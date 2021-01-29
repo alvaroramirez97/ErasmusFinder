@@ -93,7 +93,7 @@ var EventsController = /** @class */ (function () {
                         return [4 /*yield*/, database_1.default.query('SELECT COUNT(id_usuario) AS party FROM eventousuario WHERE id_evento=?', [req.params.id])];
                     case 2:
                         count = _a.sent();
-                        return [4 /*yield*/, database_1.default.query('SELECT nombre, apellidos, email FROM usuarios WHERE id IN (SELECT id_usuario FROM eventousuario WHERE id_evento = ?)', [req.params.id])];
+                        return [4 /*yield*/, database_1.default.query('SELECT id, nombre, apellidos, email FROM usuarios WHERE id IN (SELECT id_usuario FROM eventousuario WHERE id_evento = ?)', [req.params.id])];
                     case 3:
                         people = _a.sent();
                         evento[0].participantes = count[0].party;
@@ -127,6 +127,27 @@ var EventsController = /** @class */ (function () {
                         eventos = _a.sent();
                         res.json(eventos);
                         console.log("EVENTOS: ", eventos);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    EventsController.prototype.apuntarse = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var evento;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log(req.body);
+                        return [4 /*yield*/, database_1.default.query('INSERT INTO eventousuario SET ?', [req.body])];
+                    case 1:
+                        evento = _a.sent();
+                        if (evento.affectedRows == 0) {
+                            res.send([false]);
+                        }
+                        else {
+                            res.send([evento.insertId]);
+                        }
                         return [2 /*return*/];
                 }
             });
