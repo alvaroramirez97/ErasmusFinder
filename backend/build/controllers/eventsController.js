@@ -84,12 +84,20 @@ var EventsController = /** @class */ (function () {
     };
     EventsController.prototype.readOne = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var evento;
+            var evento, count, people;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, database_1.default.query('SELECT * FROM datosevento WHERE id_evento=?', [req.params.id])];
                     case 1:
                         evento = _a.sent();
+                        return [4 /*yield*/, database_1.default.query('SELECT COUNT(id_usuario) AS party FROM eventousuario WHERE id_evento=?', [req.params.id])];
+                    case 2:
+                        count = _a.sent();
+                        return [4 /*yield*/, database_1.default.query('SELECT nombre, apellidos, email FROM usuarios WHERE id IN (SELECT id_usuario FROM eventousuario WHERE id_evento = ?)', [req.params.id])];
+                    case 3:
+                        people = _a.sent();
+                        evento[0].participantes = count[0].party;
+                        evento[0].lista_users = people;
                         res.json(evento);
                         return [2 /*return*/];
                 }

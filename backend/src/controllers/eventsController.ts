@@ -24,6 +24,11 @@ class EventsController{
     
     public async readOne(req:Request, res:Response){
         const evento= await pool.query('SELECT * FROM datosevento WHERE id_evento=?', [req.params.id]);
+        const count= await pool.query('SELECT COUNT(id_usuario) AS party FROM eventousuario WHERE id_evento=?', [req.params.id]);
+        const people= await pool.query('SELECT nombre, apellidos, email FROM usuarios WHERE id IN (SELECT id_usuario FROM eventousuario WHERE id_evento = ?)', [req.params.id]);
+        evento[0].participantes= count[0].party;
+        evento[0].lista_users= people;
+        
         res.json(evento);
     }
 
@@ -38,6 +43,8 @@ class EventsController{
         res.json(eventos);
         console.log("EVENTOS: ", eventos);
     }
+
+
 
 }
 
