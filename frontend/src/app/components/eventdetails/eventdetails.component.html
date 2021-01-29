@@ -24,6 +24,24 @@
     </ng-container>
     </div>
   </div>    
+
+    <h3>Usuarios inscritos a este evento:</h3>
+    <div class="container jumbotron jumbotron-fluid brd">
+        <ul *ngFor="let user of usuarios">
+            <li>
+                <h6>- {{ user.nombre }} {{user.apellidos}}  --- {{user.email}}</h6>
+            </li>
+        </ul>
+
+            
+        <ng-container *ngIf="servicioUser.logIn()">  
+            <div class="container">
+                <a class="btn btn-success" >Inscribirse</a>
+            </div>
+        </ng-container>
+    </div>
+
+    
     
 </li>
 

@@ -16,6 +16,7 @@ export class EventdetailsComponent implements OnInit {
 
   public id: any;
   public evento: any;
+  public usuarios: any;
 
   public datosevento = {
     latitud: 0,
@@ -36,6 +37,8 @@ export class EventdetailsComponent implements OnInit {
         console.log(res[0]);
         res[0].fecha = this.formatDate(res[0].fecha);
         this.evento = res;
+        this.usuarios = res[0].lista_users;
+        
       },
       err => {
         console.log(err);
