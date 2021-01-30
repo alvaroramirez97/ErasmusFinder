@@ -10,31 +10,31 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto justificado">
           <li class="nav-item active">
-            <a class="nav-link" href="/home">Inicio <span class="sr-only">(current)</span></a>
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">Inicio <span class="sr-only">(current)</span></a>
           </li>
           <ng-template #loggedOut>
             <li class="nav-item">
-              <a class="nav-link" href="/sesion">Sesion</a>
+              <a class="nav-link" routerLink="/sesion" routerLinkActive="active">Sesion</a>
             </li>
           </ng-template>
           
           <ng-container *ngIf="servicioUser.logIn() else loggedOut">  
             <li class="nav-item">
-              <a class="nav-link" href="/perfil">Perfil</a>
+              <a class="nav-link" routerLink="/perfil" routerLinkActive="active">Perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" (click)="servicioUser.logOut()" href="/home">Logout</a>
+              <a class="nav-link" (click)="servicioUser.logOut()" routerLink="/home" routerLinkActive="active">Logout</a>
             </li>
           </ng-container>
           
           <li class="nav-item">
-            <a class="nav-link" href="/map">Mapa</a>
+            <a class="nav-link" routerLink="/map" routerLinkActive="active">Mapa</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/events">Eventos</a>
+            <a class="nav-link" routerLink="/events" routerLinkActive="active">Eventos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">Contactos</a>
+            <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contactos</a>
           </li>
         </ul>
         

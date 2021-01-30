@@ -1,4 +1,4 @@
-<form [formGroup]="formLogin" (submit)="submit()">
+<form class="sign-in-form" [formGroup]="formLogin" (submit)="submit()">
     <div class="entrada">
         <img src="../../../../assets/img/iconos/envelope.png">
         <input class="inputtext" type="text" value="jesus@gmail.com" formControlName="email" placeholder=" Email..."><br><br>
@@ -12,19 +12,19 @@
         
     </div>
     <div class="iniciosesion">
-        <button type="submit" class="btn btn-success btn-block">Iniciar Sesion</button>
+        <button type="submit" class="btn btn-info btn-block">Iniciar Sesion</button>
     </div>
-    <div class="entrada">
-        <button class="btn btn-danger btn-block" (click)="signInWithGoogle()">
-            <i class="fa fa-google"></i>
-            Iniciar con Google
+
+    <div class="social-media">
+        <button (click)="signInWithGoogle()" class="social-icon-google">
+            <i class="fab fa-google"></i>
+        </button>
+        <button (click)="signInWithFB()" class="social-icon-facebook">
+            <i class="fab fa-facebook-f"></i>
         </button>
     </div>
-    <div class="entrada">
-        <button class="btn btn-info btn-block" (click)="signInWithFB()">
-            <i class="fa fa-facebook"></i>
-            Iniciar con Facebook
-        </button>
-    </div>
+    
+   
+    
     
 </form>

@@ -1,3 +1,4 @@
+
 .inputtext{
     border: 2px solid black;
     margin: 10px;
@@ -16,10 +17,11 @@ a{
     color: rgb(250, 52, 45);
     text-decoration: none;
     font-weight: bold;
+    font-size: 12px;
 }
 
 a:hover{
-    font-size: 20px;
+    font-size: 13px;
 }
 
 .iniciosesion{
@@ -27,4 +29,62 @@ a:hover{
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.social-media{
+    display: flex;
+    justify-content: center;
+}
+
+.social-icon-google{
+    height: 46px;
+    width: 46px;
+    border: 1px solid #333;
+    margin: 0 0.45 rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: yellow;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    transition: 0.3s;
+    margin: 20px;
+    background-color: red;
+}
+
+.social-icon-google:hover{
+    color: yellow;
+    border-color: yellow;
+    border: 3px solid yellow;
+    background-color: black;
+}
+
+.social-icon-facebook{
+    height: 46px;
+    width: 46px;
+    border: 1px solid #333;
+    margin: 0 0.45 rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: snow;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    transition: 0.3s;
+    margin: 20px;
+    background-color: mediumblue;
+}
+
+.social-icon-facebook:hover{
+    color: yellow;
+    border-color: yellow;
+    border: 3px solid yellow;
+    background-color: black;
+}
+
+.iniciosesion button{
+    border-radius: 10px;
+    width: 60%;
 }
