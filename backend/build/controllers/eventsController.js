@@ -70,12 +70,18 @@ var EventsController = /** @class */ (function () {
     };
     EventsController.prototype.edit = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var evento;
+            var d, month, day, year, evento;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log(req.body);
-                        return [4 /*yield*/, database_1.default.query('UPDATE datosevento SET destino=? , descripcion=? , fecha=? , latitud=? , longitud=? WHERE id_evento= ?', [req.body.destino, req.body.descripcion, req.body.fecha, req.body.latitud, req.body.longitud, req.body.id])];
+                        console.log('1111', req.body);
+                        d = new Date(req.body.fecha), month = '' + (d.getMonth() + 1), day = '' + d.getDate(), year = d.getFullYear();
+                        if (month.length < 2)
+                            month = '0' + month;
+                        if (day.length < 2)
+                            day = '0' + day;
+                        req.body.fecha = [year, month, day].join('-');
+                        return [4 /*yield*/, database_1.default.query('UPDATE datosevento SET destino=? , descripcion=? , fecha=? , latitud=? , longitud=? WHERE id_evento= ?', [req.body.destino, req.body.descripcion, req.body.fecha, req.body.latitud, req.body.longitud, req.body.id_evento])];
                     case 1:
                         evento = _a.sent();
                         console.log(evento);

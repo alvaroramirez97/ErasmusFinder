@@ -18,8 +18,18 @@ class EventsController{
     }
     
     public async edit(req: Request, res: Response) {
-        console.log(req.body);
-        const evento = await pool.query('UPDATE datosevento SET destino=? , descripcion=? , fecha=? , latitud=? , longitud=? WHERE id_evento= ?', [req.body.destino, req.body.descripcion, req.body.fecha, req.body.latitud, req.body.longitud, req.body.id]);
+        console.log('1111',req.body);
+        var d = new Date(req.body.fecha),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+        req.body.fecha= [year, month, day].join('-');   
+        const evento = await pool.query('UPDATE datosevento SET destino=? , descripcion=? , fecha=? , latitud=? , longitud=? WHERE id_evento= ?', [req.body.destino, req.body.descripcion, req.body.fecha, req.body.latitud, req.body.longitud, req.body.id_evento]);
         console.log(evento);
         if (evento.affectedRows == 0) {
             res.send([false]);
