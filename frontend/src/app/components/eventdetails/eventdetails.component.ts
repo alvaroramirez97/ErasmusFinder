@@ -7,6 +7,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var L: any;
+declare var $: any;
 
 @Component({
   selector: 'app-eventdetails',
@@ -158,7 +159,7 @@ export class EventdetailsComponent implements OnInit {
       id_organizador: parseInt(localStorage.getItem('id')),
       destino: ev.destino,
       descripcion: ev.descripcion,
-      fecha: this.formatDate(ev.fecha),
+      fecha: new Date(ev.fecha),
       latitud: ev.latitud,
       longitud: ev.longitud
     }
@@ -172,7 +173,7 @@ export class EventdetailsComponent implements OnInit {
     }
     if(formu.fecha != ev.fecha && formu.fecha!=''){
       console.log('fecha cambiada');
-      objEvento.fecha = this.formatDate(formu.fecha);
+      objEvento.fecha = new Date(formu.fecha);
     }
     if(formu.latitud != ev.latitud && formu.latitud!=''){
       console.log('latitud cambiada');
@@ -185,11 +186,12 @@ export class EventdetailsComponent implements OnInit {
     
     this.servicioEventos.editarEvento(objEvento).subscribe(
       res => {
-        if (!res[0]) {// Si devuelve false
-    console.log('editao');
-
-        } else {  // Si devuelve algo bien
+        if (!res[0]) {
+          console.log('Guardado correctamente');
+          location.reload();
+        } else { 
           console.log(res[0]);
+          alert('Algo salió mal. Intentalo de nuevo')
         }
       },
       err => {

@@ -31,7 +31,7 @@ export class EventosService {
   }
 
   editarEvento(evento: modeloEvento): Observable<any> {
-    return this.http.post('http://localhost:3000/eventos/editar', evento);
+    return this.http.put('http://localhost:3000/eventos/editar', evento);
   }
 
   deleteEvento(id: string): Observable<any> {
