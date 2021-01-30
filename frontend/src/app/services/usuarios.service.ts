@@ -23,7 +23,6 @@ export class UsuariosService {
   }
 
   editUsuario(usuario: Mimodelo): Observable<any> {
-    console.log('editando')
     return this.http.put('http://localhost:3000/usuarios/editar', usuario);
   }
 

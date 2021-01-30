@@ -67,8 +67,7 @@ class UsuarioController {
 
     public async update(req: Request, res: Response) {
         console.log('0000', req.body);
-        const user = await pool.query('UPDATE usuarios SET ? WHERE id=?', [req.body.nombre, req.body.apellidos, req.body.email, req.body.id_usuario])
-        //await pool.query('UPDATE usuarios SET ? WHERE id=?', [req.body, req.params.id]);
+        const user = await pool.query('UPDATE usuarios SET nombre=?, apellidos=?, email=?, idioma=? WHERE id=?', [req.body.nombre, req.body.apellidos, req.body.email, req.body.idioma, req.body.id]);
         console.log(user);
         if(user.affectedRows == 0)
         {
@@ -77,7 +76,6 @@ class UsuarioController {
         else{
             res.send([user.insertId]);
         }
-        res.json("Usuario Actualizado");
     }
 
     public async delete(req: Request, res: Response) {

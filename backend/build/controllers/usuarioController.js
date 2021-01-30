@@ -160,12 +160,9 @@ var UsuarioController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         console.log('0000', req.body);
-                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET ? WHERE id=?', [req.body.nombre, req.body.apellidos, req.body.email, req.body.id_usuario])
-                            //await pool.query('UPDATE usuarios SET ? WHERE id=?', [req.body, req.params.id]);
-                        ];
+                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET nombre=?, apellidos=?, email=?, idioma=? WHERE id=?', [req.body.nombre, req.body.apellidos, req.body.email, req.body.idioma, req.body.id])];
                     case 1:
                         user = _a.sent();
-                        //await pool.query('UPDATE usuarios SET ? WHERE id=?', [req.body, req.params.id]);
                         console.log(user);
                         if (user.affectedRows == 0) {
                             res.send([false]);
@@ -173,7 +170,6 @@ var UsuarioController = /** @class */ (function () {
                         else {
                             res.send([user.insertId]);
                         }
-                        res.json("Usuario Actualizado");
                         return [2 /*return*/];
                 }
             });

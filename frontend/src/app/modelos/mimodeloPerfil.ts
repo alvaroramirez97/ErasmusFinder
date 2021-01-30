@@ -4,5 +4,6 @@ export interface MimodeloPerfil {
     apellidos?: string;
     email?: string;
     accessToken?: string;
+    idioma?: string;
     foto?: string;
 }

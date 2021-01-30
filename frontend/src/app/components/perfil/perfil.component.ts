@@ -12,10 +12,10 @@ import { MimodeloPerfil } from 'src/app/modelos/mimodeloPerfil';
 export class PerfilComponent implements OnInit {
 
   public formUsuario: FormGroup;
-  public user: any;
+  public user: MimodeloPerfil;
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private serviceuser: UsuariosService) {
+  constructor(private formBuilder: FormBuilder, public servicioUsuarios: UsuariosService, private router: Router) {
     this.formUsuario = formBuilder.group({
       id: ['', Validators.required],
       nombre: ['', Validators.required],
@@ -30,7 +30,7 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {
     const idUser = localStorage.getItem('id');
-    this.serviceuser.leerUser(idUser).subscribe(
+    this.servicioUsuarios.leerUser(idUser).subscribe(
       res => {
         if (!res[0]) {
           this.router.navigate(['/login']);
@@ -58,7 +58,7 @@ export class PerfilComponent implements OnInit {
   borrarUser(paco) {
     const idUser = localStorage.getItem('id');
     console.log(paco)
-    this.serviceuser.deleteUsuario(idUser).subscribe(
+    this.servicioUsuarios.deleteUsuario(idUser).subscribe(
       res => {
         console.log(res);
         localStorage.removeItem('token');
@@ -75,45 +75,51 @@ export class PerfilComponent implements OnInit {
 
   submit(){
     var formu = this.formUsuario.value;
-    const user = this.user;    
+    const user = this.user;
     const objUser={
       id: parseInt(localStorage.getItem('id')),
       nombre: this.user.nombre,
       apellidos: this.user.apellidos,
-      email: this.user.email
+      email: this.user.email,
+      idioma: this.user.idioma
     }
-    console.log(objUser);
-    
-    if(formu.nombre != user.nombre && formu.nombre != ""){
+    if(formu.nombre != user.nombre && formu.nombre != "")
+    {
       console.log('nombre cambiado');
       objUser.nombre = formu.nombre;
     }
-    if(formu.apellidos != user.apellidos && formu.apellidos != ""){
+    if(formu.apellidos != user.apellidos && formu.apellidos != "")
+    {
       console.log('apellidos cambiados');
       objUser.apellidos = formu.apellidos;
     }
-    if(formu.email != user.email && formu.email != ""){
+    if(formu.email != user.email && formu.email != "")
+    {
       console.log('email cambiado');
       objUser.email = formu.email;
     }
+    if(formu.idioma != user.idioma && formu.idioma != "")
+    {
+      console.log('email cambiado');
+      objUser.idioma = formu.idioma;
+    }
     console.log(objUser);
-    
-    this.serviceuser.editUsuario(objUser).subscribe(
+    this.servicioUsuarios.editUsuario(objUser).subscribe(
       res => {
         if(!res[0]){
           console.log("Guardado correctamente");
-          // location.reload();
+          location.reload();
         }
         else {  // Si devuelve algo bien
-        console.log(res[0]);
-        alert("Algo salió mal. Intentalo de nuevo.");
-      }
+          console.log(res);
+          console.log(res[0]);
+          alert("Algo salió mal. Intentalo de nuevo.");
+        }
       },
       err => {
-        console.log(err);
-        // this.router.navigate(['/perfil']);
+        this.router.navigate(['/perfil']);
       }
-    )
+    );
   }
 
   abrirEditor(){

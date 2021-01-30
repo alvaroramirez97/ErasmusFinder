@@ -4,5 +4,6 @@ export interface MimodeloRegistro {
     apellidos?: string;
     email?: string;
     password?: string;
+    idioma?: string;
     id_pais?: number;
 }
