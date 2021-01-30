@@ -11,8 +11,9 @@
         <div class="datos" *ngIf="user">
             
             <h2><b>Nombre:</b>  {{user.nombre}}</h2>
-            <h2><b>Apellidos:</b>  {{user.apellidos}}</h2><br>
-            <h2><b>Email:</b> {{user.email}}</h2><br>
+            <h2><b>Apellidos:</b>  {{user.apellidos}}</h2>
+            <h2><b>Email:</b> {{user.email}}</h2>
+            <h2><b>Idioma:</b> {{user.idioma}} </h2>
         </div>
     </div>
 <!-- 
@@ -22,14 +23,32 @@
     </div>
 -->
 
-    <br><br>
     <div id="editarPerfil">
-        <a href="/login" class="btn btn-danger btn-block" (click)="borrarUser()">Borrar usuario</a>
+        <a class="btn btn-info btn-block size" (click)="abrirEditor()">Editar perfil</a>
+        <a href="/login" class="btn btn-danger btn-block size" (click)="borrarUser()">Borrar usuario</a>
         
-        <a href="/login" class="btn btn-dark btn-block" (click)="this.serviceuser.logOut()" >
+        <a href="/login" class="btn btn-danger btn-block size" (click)="this.serviceuser.logOut()" >
             Cerrar Sesion
         </a>
 
     </div>
+    
     <br><br>
+
+    <div id="editorPerfil" class="jumbotron jumbotron-fluid brd oculto" *ngIf="user">
+        <div class="container">
+            <form [formGroup]="formUsuario" (submit)="submit()">
+                <div class="form-group">
+                    <p class="titulo">Edita tu perfil: </p>
+                    <input class="form-control" formControlName="nombre" type="text" value="{{user.nombre}}" placeholder="Nombre..."><br>
+                    <input class="form-control" type="text" formControlName="apellidos" value="{{user.apellidos}}" placeholder="Apellidos..."><br>
+                    <input class="form-control" type="text" formControlName="email" value="{{user.email}}" placeholder="Email..."><br>
+                    <input class="form-control" type="text" formControlName="idioma" value="{{user.idioma}}" placeholder="Idioma..."><br>
+                </div>
+                <button type="submit" class="btn btn-info btn-block">Guardar cambios</button>&nbsp;
+                <a class="btn btn-warning btn-block" (click)="cerrarEditor()">Cerrar editor</a>
+            </form>
+        </div>
+    </div>   
+
 </div>

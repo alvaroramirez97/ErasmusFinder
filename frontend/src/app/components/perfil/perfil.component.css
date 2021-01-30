@@ -22,6 +22,7 @@
 .datos{
     grid-area: divDatos;
     padding: 10px;
+    margin-left: 50px;
 }
 
 #divDatos{
@@ -34,6 +35,19 @@
 
 #idiomas{
     padding: 10px;
+}
+
+.oculto{
+    display: none;
+}
+
+.brd{
+    border-radius: 20px;
+}
+
+.size{
+    width: 250px;
+    margin-left: 20px;
 }
 
 @media only screen and (max-width:991px){
@@ -51,6 +65,14 @@
     }
     .foto img{
         margin: auto;
+    }
+
+    .oculto{
+        display: none;
+    }
+
+    .brd{
+        border-radius: 20px;
     }
 
 }

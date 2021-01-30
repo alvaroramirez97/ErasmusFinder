@@ -14,7 +14,8 @@ class UsuarioRoutes{
         this.router.post('/crear', controladorUsuario.create);
         this.router.put('/token', controladorUsuario.updateToken);
         this.router.put('/ubi', controladorUsuario.updateUbi);
-        this.router.put('/:id', controladorUsuario.update);
+        //this.router.put('/:id', controladorUsuario.update);
+        this.router.put('/editar', controladorUsuario.update);
         this.router.delete('/:id', controladorUsuario.delete);
         this.router.post('/login', controladorUsuario.readLogin);
         this.router.get('/exist/:email', controladorUsuario.check);

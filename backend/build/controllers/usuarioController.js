@@ -155,11 +155,24 @@ var UsuarioController = /** @class */ (function () {
     };
     UsuarioController.prototype.update = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET ? WHERE id=?', [req.body, req.params.id])];
+                    case 0:
+                        console.log('0000', req.body);
+                        return [4 /*yield*/, database_1.default.query('UPDATE usuarios SET ? WHERE id=?', [req.body.nombre, req.body.apellidos, req.body.email, req.body.id_usuario])
+                            //await pool.query('UPDATE usuarios SET ? WHERE id=?', [req.body, req.params.id]);
+                        ];
                     case 1:
-                        _a.sent();
+                        user = _a.sent();
+                        //await pool.query('UPDATE usuarios SET ? WHERE id=?', [req.body, req.params.id]);
+                        console.log(user);
+                        if (user.affectedRows == 0) {
+                            res.send([false]);
+                        }
+                        else {
+                            res.send([user.insertId]);
+                        }
                         res.json("Usuario Actualizado");
                         return [2 /*return*/];
                 }

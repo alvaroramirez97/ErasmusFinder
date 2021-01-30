@@ -22,6 +22,11 @@ export class UsuariosService {
     return this.http.delete('http://localhost:3000/usuarios/' + id);
   }
 
+  editUsuario(usuario: Mimodelo): Observable<any> {
+    console.log('editando')
+    return this.http.put('http://localhost:3000/usuarios/editar', usuario);
+  }
+
   updateToken(usuario: Mimodelo): Observable<any> {
     return this.http.put('http://localhost:3000/usuarios/token', usuario);
   }
